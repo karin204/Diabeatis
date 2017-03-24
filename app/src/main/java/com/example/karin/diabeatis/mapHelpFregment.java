@@ -118,16 +118,20 @@ public class mapHelpFregment extends Fragment implements OnMapReadyCallback {
 
 
     protected void sendSMSMessage() {
-        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.SEND_SMS)) {
-            }
-            else
-            {
-                ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.SEND_SMS},
-                        MY_PERMISSIONS_REQUEST_SEND_SMS);
-            }
+        try {
+            SmsManager.getDefault().sendTextMessage(number, null, message, null, null);
+            Toast.makeText(getActivity(), "SMS sent.",
+                    Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            AlertDialog.Builder alertDialogBuilder = new
+                    AlertDialog.Builder(getActivity());
+            AlertDialog dialog = alertDialogBuilder.create();
+
+            dialog.setMessage(e.getMessage());
+            dialog.show();
         }
-    }
+
+        }
 
 
     @Override
@@ -138,7 +142,7 @@ public class mapHelpFregment extends Fragment implements OnMapReadyCallback {
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     SmsManager smsManager = SmsManager.getDefault();
                     smsManager.sendTextMessage(number, null, message, null, null);
-                    Toast.makeText(activity, "SMS sent.",
+                    Toast.makeText(getActivity(), "SMS sent.",
                             Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(activity,
