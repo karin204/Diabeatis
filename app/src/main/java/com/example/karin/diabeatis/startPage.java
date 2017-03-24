@@ -102,6 +102,14 @@ public class startPage extends AppCompatActivity implements View.OnClickListener
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 mapHelpFregment f = new mapHelpFregment();
+                if (!locationManager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+                    buildAlertMessageNoGps();
+                }
+                else {
+                    gpsPosHandler.postDelayed(selfPositionThred, 0);
+                    timerHandler.postDelayed(timerRunnable, 0);
+                }
+
                 if(location != null)
                 {
                     latitude = location.getLatitude();
@@ -131,13 +139,7 @@ public class startPage extends AppCompatActivity implements View.OnClickListener
     @Override
     protected void onResume() {
         super.onResume();
-        if (!locationManager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
-            buildAlertMessageNoGps();
-        }
-        else {
-            gpsPosHandler.postDelayed(selfPositionThred, 0);
-            timerHandler.postDelayed(timerRunnable, 0);
-        }
+
 
 
     }
