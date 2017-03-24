@@ -1,7 +1,6 @@
-package com.example.karin.diabeatis;
+package com.example.karin.diabeatis.UI;
 
 import android.Manifest;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -20,19 +19,21 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.android.gms.maps.MapFragment;
+import com.example.karin.diabeatis.R;
 
 import java.util.Calendar;
 
 public class startPage extends AppCompatActivity implements View.OnClickListener,LocationListener {
 
     private Button btnHelp;
+    private Button btnInj;
     private String number = "0528840354";
     private LocationManager locationManager;
     private Location location;
     private long startTime = 0;
     private double longitude;
     private double latitude;
+    private Intent intent;
     private final String TAG = startPage.class.getSimpleName();
 
 
@@ -75,6 +76,8 @@ public class startPage extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_main);
         btnHelp = (Button)findViewById(R.id.btnHelp);
         btnHelp.setOnClickListener(this);
+        btnInj = (Button)findViewById(R.id.btn);
+        btnInj.setOnClickListener(this);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         startTime = 0;
     }
@@ -101,15 +104,7 @@ public class startPage extends AppCompatActivity implements View.OnClickListener
             {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                mapHelpFregment f = new mapHelpFregment();
-                if (!locationManager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
-                    buildAlertMessageNoGps();
-                }
-                else {
-                    gpsPosHandler.postDelayed(selfPositionThred, 0);
-                    timerHandler.postDelayed(timerRunnable, 0);
-                }
-
+                mapHelpFragment f = new mapHelpFragment();
                 if(location != null)
                 {
                     latitude = location.getLatitude();
@@ -131,6 +126,14 @@ public class startPage extends AppCompatActivity implements View.OnClickListener
                 fragmentTransaction.replace(R.id.activity_main, f);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
+                break;
+            }
+            case R.id.btn:
+            {
+                intent = new Intent(this,insulinCalculate.class);
+                startActivity(intent);
+                finish();
+                break;
             }
         }
     }
@@ -139,7 +142,13 @@ public class startPage extends AppCompatActivity implements View.OnClickListener
     @Override
     protected void onResume() {
         super.onResume();
-
+        if (!locationManager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+            buildAlertMessageNoGps();
+        }
+        else {
+            gpsPosHandler.postDelayed(selfPositionThred, 0);
+            timerHandler.postDelayed(timerRunnable, 0);
+        }
 
 
     }

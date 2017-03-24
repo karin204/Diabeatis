@@ -1,7 +1,6 @@
-package com.example.karin.diabeatis;
+package com.example.karin.diabeatis.UI;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.Application;
 import android.app.Fragment;
 import android.content.Context;
@@ -13,7 +12,6 @@ import android.location.Geocoder;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.telephony.SmsManager;
 import android.view.LayoutInflater;
@@ -22,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.karin.diabeatis.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -29,8 +28,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.List;
@@ -40,10 +37,10 @@ import java.util.Locale;
  * Created by Karin on 23/03/2017.
  */
 
-public class mapHelpFregment extends Fragment implements OnMapReadyCallback {
+public class mapHelpFragment extends Fragment implements OnMapReadyCallback {
 
     private LocationManager locationManager;
-    private final String TAG = mapHelpFregment.class.getSimpleName();
+    private final String TAG = mapHelpFragment.class.getSimpleName();
     private Application activity;
     private MapView mMapView;
     private GoogleMap mMap;

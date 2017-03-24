@@ -12,14 +12,24 @@ public class Person
     private double weight;
     private char diabType;
     private History history;
+    private int totalCheck;
 
-    public Person(String name, int age, double height,double weight,char diabType)
+    public Person(String name, int age, double height, double weight, char diabType)
     {
         this.name = name;
         this.age = age;
         this.height = height;
         this.weight = weight;
         this.diabType = diabType;
+        this.totalCheck = 0;
+    }
+
+    public int getTotalCheck() {
+        return totalCheck;
+    }
+
+    public void setTotalCheck(int totalCheck) {
+        this.totalCheck = totalCheck;
     }
 
     public String getName() {

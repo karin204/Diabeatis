@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Diabeatis</string>
+    <string name="title_activity_insulin_calculation">InsulinCalculation</string>
+    <string name="title_activity_insulin_cal">insulinCal</string>
 </resources>

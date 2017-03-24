@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_insulin_calculate"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.karin.diabeatis.UI.insulinCalculate">
+
+    <TableRow
+        android:layout_width="350dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="right"
+        android:id="@+id/top"
+        android:layout_height="60dp">
+
+        <TextView
+            android:text="שלום "
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:id="@+id/txtHello"
+            android:textSize="40sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtName"
+            android:textSize="40sp" />
+    </TableRow>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/top"
+        android:layout_marginTop="94dp"
+        android:id="@+id/center"
+        android:gravity="right">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:id="@+id/table"
+            android:layout_height="250dp"
+            android:gravity="right">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/title" >
+
+                <TextView
+                    android:text="מינון"
+                    android:layout_width="175dp"
+                    android:id="@+id/result"
+                    android:gravity="center_horizontal" />
+
+                <TextView
+                    android:text="יחידות אינסולין"
+                    android:layout_width="175dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/unit"
+                    android:gravity="center_horizontal" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/inj1" >
+
+                <TextView
+                    android:text="מינון 1"
+                    android:layout_width="175dp"
+                    android:id="@+id/unit1"
+                    android:gravity="center_horizontal"
+                    android:layout_height="40dp" />
+
+                <EditText
+                    android:layout_width="175dp"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/res1"
+                    android:layout_height="40dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/inj2" >
+
+                <TextView
+                    android:text="מינון 2"
+                    android:layout_width="175dp"
+                    android:id="@+id/unit2"
+                    android:gravity="center_horizontal"
+                    android:layout_height="40dp" />
+
+                <EditText
+                    android:layout_width="175dp"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/res2"
+                    android:layout_height="40dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/inj3" >
+
+                <TextView
+                    android:text="מינון 3"
+                    android:layout_width="175dp"
+                    android:id="@+id/unit3"
+                    android:gravity="center_horizontal"
+                    android:layout_height="40dp" />
+
+                <EditText
+                    android:layout_width="175dp"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/res3"
+                    android:layout_height="40dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/inj4" >
+
+                <TextView
+                    android:text="מינון 4"
+                    android:layout_width="175dp"
+                    android:id="@+id/unit4"
+                    android:gravity="center_horizontal"
+                    android:layout_height="40dp" />
+
+                <EditText
+                    android:layout_width="175dp"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/res4"
+                    android:layout_height="40dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/inj5" >
+
+                <TextView
+                    android:text="מינון 5"
+                    android:layout_width="175dp"
+                    android:id="@+id/unit5"
+                    android:gravity="center_horizontal"
+                    android:layout_height="40dp" />
+
+                <EditText
+                    android:layout_width="175dp"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/res5"
+                    android:layout_height="40dp"
+                    android:textAlignment="center" />
+
+            </TableRow>
+        </TableLayout>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="left">
+
+            <Button
+                android:text="מחק"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnDel" />
+
+            <Button
+                android:text="חישוב"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnOk" />
+
+            <TextView
+                android:text="0"
+                android:layout_height="match_parent"
+                android:id="@+id/txtFinal"
+                android:layout_width="50dp" />
+
+        </TableRow>
+
+    </LinearLayout>
+
+</RelativeLayout>
