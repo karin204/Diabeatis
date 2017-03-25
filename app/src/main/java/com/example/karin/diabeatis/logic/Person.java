@@ -1,26 +1,30 @@
 package com.example.karin.diabeatis.logic;
 
+import java.io.Serializable;
+
 /**
  * Created by Karin on 24/03/2017.
  */
 
-public class Person
+public class Person implements Serializable
 {
     private String name;
     private int age;
     private double height;
     private double weight;
-    private char diabType;
+    private int diabType;
+    private String phone;
     private History history;
     private int totalCheck;
 
-    public Person(String name, int age, double height, double weight, char diabType)
+    public Person(String name, int age, double height, double weight, int diabType, String phone)
     {
         this.name = name;
         this.age = age;
         this.height = height;
         this.weight = weight;
         this.diabType = diabType;
+        this.phone = phone;
         this.totalCheck = 0;
     }
 
@@ -64,12 +68,20 @@ public class Person
         this.weight = weight;
     }
 
-    public char getDiabType() {
+    public int getDiabType() {
         return diabType;
     }
 
-    public void setDiabType(char diabType) {
+    public void setDiabType(int diabType) {
         this.diabType = diabType;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public History getHistory() {

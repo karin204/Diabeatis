@@ -10,62 +10,47 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.karin.diabeatis.R;
+import com.example.karin.diabeatis.logic.Person;
 
 import java.util.Calendar;
 
-public class startPage extends AppCompatActivity implements View.OnClickListener,LocationListener {
+public class MainPage extends AppCompatActivity implements View.OnClickListener,LocationListener {
 
     private Button btnHelp;
     private Button btnInj;
-    private String number = "0528840354";
+    private Button btnFood;
     private LocationManager locationManager;
     private Location location;
-    private long startTime = 0;
     private double longitude;
     private double latitude;
     private Intent intent;
-    private final String TAG = startPage.class.getSimpleName();
-
-
-
-    Handler timerHandler = new Handler();
-    Runnable timerRunnable = new Runnable() {
-        @Override
-        public void run() {
-            long millis = startTime;
-            int seconds = (int) (millis / 1000);
-            int minutes = seconds / 60;
-            seconds = seconds % 60;
-            startTime += 1000;
-            timerHandler.postDelayed(this, 1000);
-        }
-    };
-
+    private Person p;
+    private final String TAG = MainPage.class.getSimpleName();
 
     Handler gpsPosHandler = new Handler();
     Runnable selfPositionThred = new Runnable() {
         @Override
         public void run() {
-            if (ActivityCompat.checkSelfPermission(startPage.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission(startPage.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(startPage.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 0);
+            if (ActivityCompat.checkSelfPermission(MainPage.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                    && ActivityCompat.checkSelfPermission(MainPage.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(MainPage.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 0);
                 return;
             }
             location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             if (location != null && location.getTime() > Calendar.getInstance().getTimeInMillis() - 2 * 60 * 1000) {
                 Log.d(TAG, "Location obtained");
             } else {
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, startPage.this);
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, MainPage.this);
             }
         }
     };
@@ -73,13 +58,16 @@ public class startPage extends AppCompatActivity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
+        setContentView(R.layout.main_page2);
         btnHelp = (Button)findViewById(R.id.btnHelp);
         btnHelp.setOnClickListener(this);
         btnInj = (Button)findViewById(R.id.btn);
         btnInj.setOnClickListener(this);
+        btnFood = (Button) findViewById(R.id.btnfood);
+        btnFood.setOnClickListener(this);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        startTime = 0;
+        p = (Person) getIntent().getSerializableExtra("person");
     }
 
 
@@ -104,7 +92,7 @@ public class startPage extends AppCompatActivity implements View.OnClickListener
             {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                mapHelpFragment f = new mapHelpFragment();
+                MapHelpFragment f = new MapHelpFragment();
                 if(location != null)
                 {
                     latitude = location.getLatitude();
@@ -117,22 +105,44 @@ public class startPage extends AppCompatActivity implements View.OnClickListener
                 }
 
                 Bundle bundle = new Bundle();
-                btnHelp.setVisibility(View.INVISIBLE);
-                bundle.putInt("ActivityId", R.id.activity_main);
+                bundle.putInt("ActivityId", R.id.main_page2);
                 bundle.putDouble("Latitude",latitude);
                 bundle.putDouble("Longitude",longitude);
-                bundle.putString("Number",number);
+                bundle.putString("Number",p.getPhone());
                 f.setArguments(bundle);
-                fragmentTransaction.replace(R.id.activity_main, f);
-                fragmentTransaction.addToBackStack(null);
+                //fragmentTransaction.replace(R.id.main_page2, f);
+                //fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.replace(R.id.fregmentPlace,f);
                 fragmentTransaction.commit();
                 break;
             }
             case R.id.btn:
             {
-                intent = new Intent(this,insulinCalculate.class);
-                startActivity(intent);
-                finish();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                InsulinCalculate f = new InsulinCalculate();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("person", p);
+                f.setArguments(bundle);
+                //fragmentTransaction.replace(R.id.main_page2, f);
+                //fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.replace(R.id.fregmentPlace,f);
+                fragmentTransaction.commit();
+                break;
+            }
+
+            case R.id.btnfood:
+            {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                FoodInsertion f = new FoodInsertion();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("person", p);
+                f.setArguments(bundle);
+                //fragmentTransaction.replace(R.id.main_page2, f);
+                //fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.replace(R.id.fregmentPlace,f);
+                fragmentTransaction.commit();
                 break;
             }
         }
@@ -145,25 +155,21 @@ public class startPage extends AppCompatActivity implements View.OnClickListener
         if (!locationManager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
             buildAlertMessageNoGps();
         }
-        else {
+        else
             gpsPosHandler.postDelayed(selfPositionThred, 0);
-            timerHandler.postDelayed(timerRunnable, 0);
-        }
-
-
     }
 
     @Override
-    public void onLocationChanged(Location location) { if (location != null) {
-        Log.v("Location Changed", location.getLatitude() + " and " + location.getLongitude());
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 0);
+    public void onLocationChanged(Location location)
+    { if (location != null)
+        {
+            Log.v("Location Changed", location.getLatitude() + " and " + location.getLongitude());
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                    ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 0);
+            }
+            locationManager.removeUpdates(this);
         }
-        locationManager.removeUpdates(this);
-    }
-
-
     }
 
     @Override
@@ -188,13 +194,9 @@ public class startPage extends AppCompatActivity implements View.OnClickListener
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                         dialog.cancel();
-                        timerHandler.postDelayed(timerRunnable, 0);
                     }
                 });
         final AlertDialog alert = builder.create();
         alert.show();
     }
-
-
-
 }

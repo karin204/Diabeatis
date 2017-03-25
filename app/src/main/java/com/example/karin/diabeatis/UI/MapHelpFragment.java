@@ -37,10 +37,10 @@ import java.util.Locale;
  * Created by Karin on 23/03/2017.
  */
 
-public class mapHelpFragment extends Fragment implements OnMapReadyCallback {
+public class MapHelpFragment extends Fragment implements OnMapReadyCallback {
 
     private LocationManager locationManager;
-    private final String TAG = mapHelpFragment.class.getSimpleName();
+    private final String TAG = MapHelpFragment.class.getSimpleName();
     private Application activity;
     private MapView mMapView;
     private GoogleMap mMap;

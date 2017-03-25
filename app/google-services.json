@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "889621639817",
+    "firebase_url": "https://diabeatis-bcc71.firebaseio.com",
+    "project_id": "diabeatis-bcc71",
+    "storage_bucket": "diabeatis-bcc71.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889621639817:android:ccc843f0bba8990e",
+        "android_client_info": {
+          "package_name": "com.example.karin.diabeatis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "889621639817-uidm8j0f68n60r7soibp2j55o7sl6dpo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.karin.diabeatis",
+            "certificate_hash": "75f55a2894586c135250b642993a06a59f40c2ab"
+          }
+        },
+        {
+          "client_id": "889621639817-khenanj7hi49el9sdpq825ugsgmiijid.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLHLpdwOkaPkbS6Sd_TByV_QB2knm4JJg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "889621639817-khenanj7hi49el9sdpq825ugsgmiijid.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

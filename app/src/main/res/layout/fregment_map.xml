@@ -10,11 +10,11 @@
         android:layout_weight="1">
 
         <TextView
-            android:text="TextView"
+            android:id="@+id/txtAdd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txtAdd"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:text=" " />
 
         <com.google.android.gms.maps.MapView
             android:layout_width="match_parent"

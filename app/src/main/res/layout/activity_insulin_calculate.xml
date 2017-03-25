@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.karin.diabeatis.UI.insulinCalculate">
+    tools:context="com.example.karin.diabeatis.UI.InsulinCalculate">
 
     <TableRow
         android:layout_width="350dp"
@@ -34,8 +34,8 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/top"
         android:layout_marginTop="94dp"
         android:id="@+id/center"
@@ -53,16 +53,16 @@
                 android:id="@+id/title" >
 
                 <TextView
-                    android:text="מינון"
-                    android:layout_width="175dp"
-                    android:id="@+id/result"
-                    android:gravity="center_horizontal" />
-
-                <TextView
                     android:text="יחידות אינסולין"
                     android:layout_width="175dp"
                     android:layout_height="30dp"
                     android:id="@+id/unit"
+                    android:gravity="center_horizontal" />
+
+                <TextView
+                    android:text="מינון"
+                    android:layout_width="175dp"
+                    android:id="@+id/result"
                     android:gravity="center_horizontal" />
 
             </TableRow>
@@ -72,18 +72,18 @@
                 android:layout_height="match_parent"
                 android:id="@+id/inj1" >
 
-                <TextView
-                    android:text="מינון 1"
-                    android:layout_width="175dp"
-                    android:id="@+id/unit1"
-                    android:gravity="center_horizontal"
-                    android:layout_height="40dp" />
-
                 <EditText
                     android:layout_width="175dp"
                     android:inputType="textPersonName"
                     android:ems="10"
                     android:id="@+id/res1"
+                    android:layout_height="40dp" />
+
+                <TextView
+                    android:text="מינון 1"
+                    android:layout_width="175dp"
+                    android:id="@+id/unit1"
+                    android:gravity="center_horizontal"
                     android:layout_height="40dp" />
 
             </TableRow>
@@ -93,18 +93,18 @@
                 android:layout_height="match_parent"
                 android:id="@+id/inj2" >
 
-                <TextView
-                    android:text="מינון 2"
-                    android:layout_width="175dp"
-                    android:id="@+id/unit2"
-                    android:gravity="center_horizontal"
-                    android:layout_height="40dp" />
-
                 <EditText
                     android:layout_width="175dp"
                     android:inputType="textPersonName"
                     android:ems="10"
                     android:id="@+id/res2"
+                    android:layout_height="40dp" />
+
+                <TextView
+                    android:text="מינון 2"
+                    android:layout_width="175dp"
+                    android:id="@+id/unit2"
+                    android:gravity="center_horizontal"
                     android:layout_height="40dp" />
 
             </TableRow>
@@ -114,18 +114,18 @@
                 android:layout_height="match_parent"
                 android:id="@+id/inj3" >
 
-                <TextView
-                    android:text="מינון 3"
-                    android:layout_width="175dp"
-                    android:id="@+id/unit3"
-                    android:gravity="center_horizontal"
-                    android:layout_height="40dp" />
-
                 <EditText
                     android:layout_width="175dp"
                     android:inputType="textPersonName"
                     android:ems="10"
                     android:id="@+id/res3"
+                    android:layout_height="40dp" />
+
+                <TextView
+                    android:text="מינון 3"
+                    android:layout_width="175dp"
+                    android:id="@+id/unit3"
+                    android:gravity="center_horizontal"
                     android:layout_height="40dp" />
 
             </TableRow>
@@ -135,18 +135,18 @@
                 android:layout_height="match_parent"
                 android:id="@+id/inj4" >
 
-                <TextView
-                    android:text="מינון 4"
-                    android:layout_width="175dp"
-                    android:id="@+id/unit4"
-                    android:gravity="center_horizontal"
-                    android:layout_height="40dp" />
-
                 <EditText
                     android:layout_width="175dp"
                     android:inputType="textPersonName"
                     android:ems="10"
                     android:id="@+id/res4"
+                    android:layout_height="40dp" />
+
+                <TextView
+                    android:text="מינון 4"
+                    android:layout_width="175dp"
+                    android:id="@+id/unit4"
+                    android:gravity="center_horizontal"
                     android:layout_height="40dp" />
 
             </TableRow>
@@ -156,13 +156,6 @@
                 android:layout_height="match_parent"
                 android:id="@+id/inj5" >
 
-                <TextView
-                    android:text="מינון 5"
-                    android:layout_width="175dp"
-                    android:id="@+id/unit5"
-                    android:gravity="center_horizontal"
-                    android:layout_height="40dp" />
-
                 <EditText
                     android:layout_width="175dp"
                     android:inputType="textPersonName"
@@ -170,6 +163,13 @@
                     android:id="@+id/res5"
                     android:layout_height="40dp"
                     android:textAlignment="center" />
+
+                <TextView
+                    android:text="מינון 5"
+                    android:layout_width="175dp"
+                    android:id="@+id/unit5"
+                    android:gravity="center_horizontal"
+                    android:layout_height="40dp" />
 
             </TableRow>
         </TableLayout>
