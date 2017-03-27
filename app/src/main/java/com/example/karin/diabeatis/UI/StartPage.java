@@ -83,7 +83,6 @@ public class StartPage extends AppCompatActivity implements View.OnClickListener
         String dbTypeText;;
         int dbType;
         String phone = phoneText.getText().toString().trim();
-
         //check the radio button
         int radioButtonID = radioGroupField.getCheckedRadioButtonId();
         View radioButton = radioGroupField.findViewById(radioButtonID);

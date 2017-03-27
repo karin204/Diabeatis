@@ -5,17 +5,25 @@ import android.app.Fragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.example.karin.diabeatis.R;
 import com.example.karin.diabeatis.logic.Food;
 import com.example.karin.diabeatis.logic.FoodDbHandler;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -30,6 +38,11 @@ public class FoodInsertion extends Fragment implements View.OnClickListener {
     private TableLayout tableLayout;
     private Button calcBtn;
     private FoodDbHandler foodDbHandler;
+    private FirebaseDatabase database;
+    private DatabaseReference ref;
+    private ArrayList<Food> foodsInFireBase;
+    private ArrayAdapter<String> adapter;
+    private ArrayList<String> foodsForAdapter;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -39,32 +52,99 @@ public class FoodInsertion extends Fragment implements View.OnClickListener {
         tableLayout = (TableLayout) v.findViewById(R.id.tableLayout);
         calcBtn = (Button) v.findViewById(R.id.calcBtn);
         calcBtn.setOnClickListener(this);
+        foodsInFireBase = new ArrayList<>();
+        foodsForAdapter = new ArrayList<>();
+        adapter = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.list_detail, foodsForAdapter);
+        initilizeFireBase();
 
         for(int i = 0; i < 5; i++)
         {
             TableRow row = new TableRow(v.getContext());
             row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-            EditText edit1 = new EditText(v.getContext());
+            final EditText edit1 = new EditText(v.getContext());
             edit1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-            EditText edit2 = new EditText(v.getContext());
+            edit1.setFilters(new InputFilter[] {new InputFilter.LengthFilter(5)});
+            final EditText edit2 = new EditText(v.getContext());
             edit2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-            EditText edit3 = new EditText(v.getContext());
+            edit2.setFilters(new InputFilter[] {new InputFilter.LengthFilter(5)});
+            final AutoCompleteTextView edit3 = new AutoCompleteTextView(v.getContext());
             edit3.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+            edit3.setDropDownWidth(getResources().getDisplayMetrics().widthPixels);
+            edit3.setFilters(new InputFilter[] {new InputFilter.LengthFilter(12)});
+            edit3.setThreshold(1);
+            edit3.setAdapter(adapter);
+            edit3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    TextView t = (TextView) view;
+                    String fullName = (String) t.getText();
+                    for (Food f: foodsInFireBase) {
+                        if(f.toString().equals(fullName))
+                        {
+                            edit1.setText(f.getFoodQuantity() + "");
+                            edit2.setText(f.getFoodCal() + "");
+                            edit3.setText(f.getFoodName());
+                            break;
+                        }
+                    }
+                }
+            });
             row.addView(edit1);
             row.addView(edit2);
             row.addView(edit3);
             tableLayout.addView(row, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
         }
-
         return v;
     }
 
-    public void addFood()
+    public void initilizeFireBase()
+    {
+        database = FirebaseDatabase.getInstance();
+        ref = database.getReference("Foods");
+
+        ref.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
+                Food newFood = dataSnapshot.getValue(Food.class);
+                foodsInFireBase.add(newFood);
+                foodsForAdapter.add(newFood.toString());
+                System.out.println("name " + newFood.getFoodName());
+                System.out.println("Cal: " + newFood.getFoodCal());
+                System.out.println("size: " + newFood.getFoodQuantity());
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                //Food newFood = dataSnapshot.getValue(Food.class);
+                //foodsInFireBase.add(newFood);
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                Food food = dataSnapshot.getValue(Food.class);
+                foodsInFireBase.remove(food.getFoodName());
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    public void addFoodToFireBase(Food food)
     {
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference conRef = myRef.child("Foods");
-        DatabaseReference id1 = conRef.push();
-        id1.setValue("something");
+        DatabaseReference id = conRef.push();
+        id.setValue(food);
     }
 
     @Override
@@ -113,6 +193,8 @@ public class FoodInsertion extends Fragment implements View.OnClickListener {
             cal = Double.parseDouble(calText);
             qun = Double.parseDouble(qunText);
             f = new Food(foodName,cal,qun);
+            if(!foodInFireBase(f))
+                addFoodToFireBase(f);
         }
 
         return f;
@@ -127,6 +209,14 @@ public class FoodInsertion extends Fragment implements View.OnClickListener {
         }
     }
 
+    private boolean foodInFireBase(Food f)
+    {
+        for (Food f1: foodsInFireBase) {
+            if(f1.getFoodName().equals(f.getFoodName()) && f1.getFoodCal() == f.getFoodCal() && f1.getFoodQuantity() == f.getFoodQuantity())
+                return true;
+        }
+        return false;
+    }
     private void buildAlertMessage(String msg) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getView().getContext());
         builder.setMessage(msg)

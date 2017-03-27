@@ -1,8 +1,10 @@
 package com.example.karin.diabeatis.UI;
 
 import android.Manifest;
+import android.app.AlarmManager;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,6 +22,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.karin.diabeatis.R;
+import com.example.karin.diabeatis.logic.MyBootReceiver;
 import com.example.karin.diabeatis.logic.Person;
 
 import java.util.Calendar;
@@ -29,6 +32,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
     private Button btnHelp;
     private Button btnInj;
     private Button btnFood;
+    private Button btnReminders;
     private LocationManager locationManager;
     private Location location;
     private double longitude;
@@ -36,6 +40,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
     private Intent intent;
     private Person p;
     private final String TAG = MainPage.class.getSimpleName();
+    private AlarmManager alarmMgr;
 
     Handler gpsPosHandler = new Handler();
     Runnable selfPositionThred = new Runnable() {
@@ -66,6 +71,8 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
         btnInj.setOnClickListener(this);
         btnFood = (Button) findViewById(R.id.btnfood);
         btnFood.setOnClickListener(this);
+        btnReminders = (Button) findViewById(R.id.btnReminders);
+        btnReminders.setOnClickListener(this);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         p = (Person) getIntent().getSerializableExtra("person");
     }
@@ -145,6 +152,12 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                 fragmentTransaction.commit();
                 break;
             }
+
+            case R.id.btnReminders:
+            {
+                buildNoti();
+                break;
+            }
         }
     }
 
@@ -198,5 +211,56 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                 });
         final AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    public void buildNoti()
+    {
+        setNotiTime();
+        /*
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+        mBuilder.setSmallIcon(R.drawable.info);
+        mBuilder.setContentTitle("Notification Alert, Click Me!");
+        mBuilder.setContentText("Hi, This is Android Notification Detail!");
+        mBuilder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+        mBuilder.setVibrate(new long[] { 1000, 1000, 1000});
+        mBuilder.setLights(Color.BLUE, 3000, 3000);
+        mBuilder.setPriority(NotificationCompat.PRIORITY_HIGH);
+
+        Intent resultIntent = new Intent(this, MainPage.class);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addParentStack(MainPage.class);
+        stackBuilder.addNextIntent(resultIntent);
+
+        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+        mBuilder.setContentIntent(resultPendingIntent);
+
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.notify(0, mBuilder.build());*/
+
+    }
+
+    public void setNotiTime()
+    {
+        alarmMgr = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, MyBootReceiver.class);
+        PendingIntent alarmIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+        PendingIntent alarmIntent1 = PendingIntent.getBroadcast(this, 2, intent, 0);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 18);
+        calendar.set(Calendar.MINUTE, 42);
+
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.setTimeInMillis(System.currentTimeMillis());
+        calendar2.set(Calendar.HOUR_OF_DAY, 18);
+        calendar2.set(Calendar.MINUTE, 43);
+
+    // With setInexactRepeating(), you have to use one of the AlarmManager interval
+    // constants--in this case, AlarmManager.INTERVAL_DAY.
+        alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY, alarmIntent);
+        alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar2.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY, alarmIntent1);
     }
 }

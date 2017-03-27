@@ -45,6 +45,6 @@ public class Food
 
     public String toString()
     {
-        return foodName + " כלוריות: " + foodCal + "כמות: " + foodQuantity;
+        return foodName + " -  כלוריות: " + foodCal + " כמות: " + foodQuantity;
     }
 }
