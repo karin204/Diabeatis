@@ -104,7 +104,7 @@
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
                 android:maxLines="1"
-                android:inputType="text"
+                android:inputType="numberSigned"
                 android:textSize="20sp" />
 
             <TextView
@@ -133,7 +133,7 @@
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
                 android:maxLines="1"
-                android:inputType="text"
+                android:inputType="numberDecimal"
                 android:textSize="20sp" />
 
             <TextView
@@ -143,7 +143,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginRight="12dp"
                 android:textSize="20sp"
-                android:text="משקל:" />
+                android:text="משקל(קג):" />
 
         </TableRow>
 
@@ -157,12 +157,12 @@
                 android:id="@+id/height"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
                 android:hint="גובה"
                 android:maxLength="15"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
                 android:maxLines="1"
-                android:inputType="text"
                 android:textSize="20sp" />
 
             <TextView
@@ -172,7 +172,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginRight="12dp"
                 android:textSize="20sp"
-                android:text="גובה:" />
+                android:text="גובה (סמ):" />
 
         </TableRow>
 
@@ -227,7 +227,7 @@
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
                 android:maxLines="1"
-                android:inputType="text"
+                android:inputType="numberSigned"
                 android:textSize="20sp" />
 
             <TextView

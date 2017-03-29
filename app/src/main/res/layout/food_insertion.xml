@@ -33,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
+                android:inputType="numberDecimal"
                 android:layout_marginLeft="30dp"/>
 
             <TextView
@@ -41,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
+                android:inputType="numberDecimal"
                 android:layout_marginLeft="30dp"/>
 
             <TextView

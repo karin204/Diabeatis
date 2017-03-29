@@ -3,7 +3,6 @@ package com.example.karin.diabeatis.logic;
 import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -25,25 +24,28 @@ public class MyBootReceiver extends BroadcastReceiver
     @Override
     public void onReceive(Context context, Intent intent) {
         //if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
-            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context);
-            mBuilder.setSmallIcon(R.drawable.info);
-            mBuilder.setContentTitle("Notification Alert, Click Me!");
-            mBuilder.setContentText("Hi, This is Android Notification Detail!");
-            mBuilder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
-            mBuilder.setVibrate(new long[] { 1000, 1000, 1000});
-            mBuilder.setLights(Color.BLUE, 3000, 3000);
-            mBuilder.setPriority(NotificationCompat.PRIORITY_HIGH);
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context);
+        mBuilder.setSmallIcon(R.drawable.info);
+        mBuilder.setContentTitle("Notification Alert, Click Me!");
+        mBuilder.setContentText("Hi, This is Android Notification Detail!");
+        mBuilder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+        mBuilder.setVibrate(new long[] { 1000, 1000, 1000});
+        mBuilder.setLights(Color.BLUE, 3000, 3000);
+        mBuilder.setPriority(NotificationCompat.PRIORITY_HIGH);
 
-            Intent resultIntent = new Intent(context, MainPage.class);
-            TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-            stackBuilder.addParentStack(MainPage.class);
-            stackBuilder.addNextIntent(resultIntent);
+        Intent resultIntent = new Intent(context, MainPage.class);
+        resultIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-            PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-            mBuilder.setContentIntent(resultPendingIntent);
+            //TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+            //stackBuilder.addParentStack(MainPage.class);
+            //stackBuilder.addNextIntent(resultIntent);
 
-            NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-            mNotificationManager.notify(0, mBuilder.build());
-        }
+        PendingIntent pendingIntent = PendingIntent.getActivity(context,100,resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+            //PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+        mBuilder.setContentIntent(pendingIntent);
+
+        NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.notify(100, mBuilder.build());
+    }
     //}
 }
