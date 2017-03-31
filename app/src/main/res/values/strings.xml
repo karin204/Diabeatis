@@ -2,4 +2,8 @@
     <string name="app_name">Diabeatis</string>
     <string name="title_activity_insulin_calculation">InsulinCalculation</string>
     <string name="title_activity_insulin_cal">insulinCal</string>
+    <string name="drawer_opened">Opened</string>
+    <string name="drawer_closed">Closed</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

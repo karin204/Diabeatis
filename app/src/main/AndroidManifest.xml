@@ -6,12 +6,12 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/appicon"
         android:label="@string/app_name"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
@@ -28,14 +28,18 @@
         </activity>
         <activity android:name=".UI.MainPage" />
 
-        <receiver android:name=".logic.MyBootReceiver"
+        <receiver
+            android:name=".logic.MyBootReceiver"
             android:enabled="true">
+
             <!--
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"></action>
             </intent-filter>
             -->
         </receiver>
+
+        <activity android:name=".UI.ExtractingCalculate"></activity>
     </application>
 
 </manifest>

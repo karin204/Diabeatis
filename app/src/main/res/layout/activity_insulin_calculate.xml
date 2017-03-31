@@ -19,17 +19,18 @@
         android:layout_height="60dp">
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtNameE"
+            android:textSize="40sp" />
+
+        <TextView
             android:text="שלום "
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:id="@+id/txtHello"
             android:textSize="40sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtName"
-            android:textSize="40sp" />
     </TableRow>
 
     <LinearLayout
@@ -179,11 +180,13 @@
             android:layout_height="50dp"
             android:gravity="left">
 
-            <Button
-                android:text="מחק"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnDel" />
+            <TextView
+                android:text="0"
+                android:layout_height="match_parent"
+                android:id="@+id/txtFinal"
+                android:layout_width="50dp"
+                android:textSize="20dp"
+                android:gravity="center_horizontal|center" />
 
             <Button
                 android:text="חישוב"
@@ -191,11 +194,11 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btnOk" />
 
-            <TextView
-                android:text="0"
-                android:layout_height="match_parent"
-                android:id="@+id/txtFinal"
-                android:layout_width="50dp" />
+            <Button
+                android:text="מחק"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnDel" />
 
         </TableRow>
 

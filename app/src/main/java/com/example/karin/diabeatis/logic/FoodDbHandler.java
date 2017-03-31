@@ -63,15 +63,6 @@ public class FoodDbHandler extends SQLiteOpenHelper{
     }
 
 
-    public void deleteHighScore(int id)
-    {
-        Log.d(LOGCAT,"delete");
-        SQLiteDatabase database = this.getWritableDatabase();
-        String deleteQuery = "DELETE FROM Food where PlayerId='"+ id +"'";
-        Log.d("query",deleteQuery);
-        database.execSQL(deleteQuery);
-    }
-
     public ArrayList<Food> getAllFoods() {
         ArrayList<Food> arr = new ArrayList<Food>();
         SQLiteDatabase db = this.getReadableDatabase();

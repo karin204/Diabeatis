@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_extracting_calculate"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.karin.diabeatis.UI.ExtractingCalculate">
+
+    <TextView
+        android:text="שלום "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/txtHello"
+        android:textSize="40sp"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/txtHello"
+        android:textSize="40sp"
+        android:id="@+id/txtNameE"
+        android:layout_alignBottom="@+id/txtHello"
+        android:layout_alignLeft="@+id/txtHello"
+        android:layout_alignStart="@+id/txtHello" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="83dp"
+        android:layout_below="@+id/txtNameE"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_height="150dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/line1" >
+
+            <TextView
+                android:text="יחידות לשעה"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtUnit1"
+                android:gravity="center_horizontal"
+                android:textSize="8sp"
+                android:height="10dp" />
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:ems="10"
+                android:id="@+id/result1"
+                android:textSize="8sp"
+                android:layout_width="20dp"
+                android:height="10dp" />
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:ems="10"
+                android:id="@+id/hourTo1"
+                android:height="10dp"
+                android:layout_width="20dp" />
+
+            <TextView
+                android:text="עד שעה"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtTo1"
+                android:gravity="center_horizontal"
+                android:textSize="8sp"
+                android:height="10dp" />
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/hourFrom1"
+                android:height="10dp"
+                android:layout_width="20dp" />
+
+            <TextView
+                android:text="משעה"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtFrom"
+                android:gravity="center_horizontal"
+                android:textSize="8sp"
+                android:height="10dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/line2" >
+
+            <TextView
+                android:text="יחידות לשעה"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtUnit2"
+                android:textSize="8sp"
+                android:gravity="center_horizontal"
+                android:height="10dp" />
+
+            <EditText
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/result2"
+                android:height="10dp" />
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:ems="10"
+                android:id="@+id/hourTo2"
+                android:height="10dp"
+                android:layout_width="20dp" />
+
+            <TextView
+                android:text="עד שעה"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtTo2"
+                android:gravity="center_horizontal"
+                android:textSize="8sp"
+                android:height="10dp" />
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:ems="10"
+                android:id="@+id/hourFrom2"
+                android:height="10dp"
+                android:layout_width="20dp" />
+
+            <TextView
+                android:text="משעה"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtFrom2"
+                android:gravity="center_horizontal"
+                android:textSize="8sp"
+                android:height="10dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/line3" >
+
+            <TextView
+                android:text="יחידות לשעה"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtUnit3"
+                android:textSize="8sp"
+                android:gravity="center_horizontal"
+                android:height="10dp" />
+
+            <EditText
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/result3"
+                android:height="10dp" />
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:ems="10"
+                android:id="@+id/hourTo3"
+                android:height="10dp"
+                android:layout_width="20dp" />
+
+            <TextView
+                android:text="עד שעה"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtTo3"
+                android:gravity="center_horizontal"
+                android:textSize="8sp"
+                android:height="10dp" />
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/hourFrom3"
+                android:height="10dp"
+                android:layout_width="20dp" />
+
+            <TextView
+                android:text="משעה"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtFrom3"
+                android:gravity="center_horizontal"
+                android:textSize="8sp"
+                android:height="10dp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/line4" >
+
+            <TextView
+                android:text="יחידות לשעה"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtUnit4"
+                android:textSize="8sp"
+                android:gravity="center_horizontal"
+                android:height="10dp" />
+
+            <EditText
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/result4"
+                android:height="10dp" />
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:ems="10"
+                android:id="@+id/hourTo4"
+                android:height="10dp"
+                android:layout_width="20dp" />
+
+            <TextView
+                android:text="עד שעה"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtTo4"
+                android:gravity="center_horizontal"
+                android:textSize="8sp"
+                android:height="10dp" />
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/hourFrom4"
+                android:height="10dp"
+                android:layout_width="20dp" />
+
+            <TextView
+                android:text="משעה"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtFrom4"
+                android:gravity="center_horizontal"
+                android:textSize="8sp"
+                android:height="10dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/line5" >
+
+            <TextView
+                android:text="יחידות לשעה"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtUnit5"
+                android:textSize="8sp"
+                android:gravity="center_horizontal"
+                android:height="10dp" />
+
+            <EditText
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/result5"
+                android:height="10dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:ems="10"
+                android:height="20dp"
+                tools:id="hourTo5"
+                android:id="@+id/hourTo5" />
+
+            <TextView
+                android:text="עד שעה"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtTo5"
+                android:gravity="center_horizontal"
+                android:textSize="8sp"
+                android:height="20dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/hourFrom5"
+                android:height="20dp" />
+
+            <TextView
+                android:text="משעה"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtFrom5"
+                android:gravity="center_horizontal"
+                android:textSize="8sp"
+                android:height="20dp" />
+        </TableRow>
+    </TableLayout>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="left">
+
+        <TextView
+            android:text="0"
+            android:layout_height="match_parent"
+            android:id="@+id/txtFinalE"
+            android:layout_width="50dp"
+            android:textSize="20dp"
+            android:gravity="center_horizontal|center" />
+
+        <Button
+            android:text="חישוב"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnCalc" />
+
+        <Button
+            android:text="מחק"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnDelete" />
+
+    </TableRow>
+
+</RelativeLayout>

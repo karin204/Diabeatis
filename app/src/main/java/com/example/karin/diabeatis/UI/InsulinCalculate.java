@@ -34,7 +34,7 @@ public class InsulinCalculate extends Fragment implements View.OnClickListener{
         res4 = (EditText)v.findViewById(R.id.res4);
         res5 = (EditText)v.findViewById(R.id.res5);
         p = (Person) getArguments().getSerializable("person");
-        name = (TextView)v.findViewById(R.id.txtName);
+        name = (TextView)v.findViewById(R.id.txtNameE);
         name.setText(p.getName());
         btnCalc = (Button)v.findViewById(R.id.btnOk);
         btnCalc.setOnClickListener(this);
@@ -46,11 +46,31 @@ public class InsulinCalculate extends Fragment implements View.OnClickListener{
 
     public void calculateDailyInjection()
     {
-        unit1 = Integer.parseInt(String.valueOf(res1.getText()));
-        unit2 = Integer.parseInt(String.valueOf(res2.getText()));
-        unit3 = Integer.parseInt(String.valueOf(res3.getText()));
-        unit4 = Integer.parseInt(String.valueOf(res4.getText()));
-        unit5 = Integer.parseInt(String.valueOf(res5.getText()));
+        String content = String.valueOf(res1.getText());
+        if(!content.equals(""))
+            unit1 = Integer.parseInt(content);
+        else
+            unit1 = 0;
+        content = String.valueOf(res2.getText());
+        if(!content.equals(""))
+            unit2 = Integer.parseInt(content);
+        else
+            unit2 = 0;
+        content = String.valueOf(res3.getText());
+        if(!content.equals(""))
+            unit3 = Integer.parseInt(content);
+        else
+            unit3 = 0;
+        content = String.valueOf(res4.getText());
+        if(!content.equals(""))
+            unit4 = Integer.parseInt(content);
+        else
+            unit4 = 0;
+        content = String.valueOf(res5.getText());
+        if(!content.equals(""))
+            unit5 = Integer.parseInt(content);
+        else
+            unit5 = 0;
 
         result = (unit1+unit2+unit3+unit4+unit5)*0.4;
         finalResult = (TextView)v.findViewById(R.id.txtFinal);
@@ -58,30 +78,9 @@ public class InsulinCalculate extends Fragment implements View.OnClickListener{
         p.setTotalCheck(p.getTotalCheck()+1);
         //SharedPreferences.Editor scoresEditor = getSharedPreferences("injections", MODE_PRIVATE).edit();
         //scoresEditor.putString(p.getName(), String.valueOf(result));
-        //need to save multiple results not only one
 
 
     }
-
-/*
-    public void addTask(Task t) {
-    if (null == currentTasks) {
-    currentTasks = new ArrayList<task>();
-  }
-  currentTasks.add(t);
-
-  // save the task list to preference
-  SharedPreferences prefs = getSharedPreferences(SHARED_PREFS_FILE, Context.MODE_PRIVATE);
-  Editor editor = prefs.edit();
-  try {
-    editor.putString(TASKS, ObjectSerializer.serialize(currentTasks));
-  } catch (IOException e) {
-    e.printStackTrace();
-  }
-  editor.commit();
-}
-
-*/
 
     @Override
     public void onClick(View v) {

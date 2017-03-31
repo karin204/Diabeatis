@@ -57,7 +57,6 @@ public class MapHelpFragment extends Fragment implements OnMapReadyCallback {
         View v = inflater.inflate(R.layout.fregment_map, container, false);
         activity = this.getActivity().getApplication();
         txtAddress = (TextView)v.findViewById(R.id.txtAdd);
-       // cellNumber = Long.parseLong(details);
         number = getArguments().getString("Number");
         latitude = getArguments().getDouble("Latitude");
         longitude = getArguments().getDouble("Longitude");

@@ -14,23 +14,37 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.example.karin.diabeatis.R;
+import com.example.karin.diabeatis.logic.ItemSlideMenu;
 import com.example.karin.diabeatis.logic.Person;
+import com.example.karin.diabeatis.logic.SlidingMenuAdapter;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
-public class MainPage extends AppCompatActivity implements View.OnClickListener,LocationListener {
+public class MainPage extends AppCompatActivity implements View.OnClickListener, LocationListener {
 
     private Button btnHelp;
     private Button btnInj;
     private Button btnFood;
     private Button btnReminders;
+    private Button btnHistory;
     private LocationManager locationManager;
     private Location location;
     private double longitude;
@@ -39,6 +53,13 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
     private Person p;
     private final String TAG = MainPage.class.getSimpleName();
     private AlarmManager alarmMgr;
+
+    private List<ItemSlideMenu> listSliding;
+    private SlidingMenuAdapter adapter;
+    private ListView listViewSliding;
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle actionBarDrawerToggle;
+
 
     Handler gpsPosHandler = new Handler();
     Runnable selfPositionThred = new Runnable() {
@@ -61,18 +82,135 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
         setContentView(R.layout.main_page2);
         btnHelp = (Button)findViewById(R.id.btnHelp);
         btnHelp.setOnClickListener(this);
-        btnInj = (Button)findViewById(R.id.btn);
-        btnInj.setOnClickListener(this);
-        btnFood = (Button) findViewById(R.id.btnfood);
-        btnFood.setOnClickListener(this);
-        btnReminders = (Button) findViewById(R.id.btnReminders);
-        btnReminders.setOnClickListener(this);
+//        btnInj = (Button)findViewById(R.id.btn);
+//        btnInj.setOnClickListener(this);
+//        btnFood = (Button) findViewById(R.id.btnfood);
+//        btnFood.setOnClickListener(this);
+//        btnReminders = (Button) findViewById(R.id.btnReminders);
+//        btnReminders.setOnClickListener(this);
+//        btnHistory = (Button)findViewById(R.id.btnHistory);
+//        btnHistory.setOnClickListener(this);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         p = (Person) getIntent().getSerializableExtra("person");
+
+        listViewSliding = (ListView)findViewById(R.id.lv_sliding_menu);
+        drawerLayout = (DrawerLayout)findViewById(R.id.main_page2);
+        listSliding = new ArrayList<>();
+        listSliding.add(new ItemSlideMenu(R.drawable.appicon,"הסטוריה"));
+        listSliding.add(new ItemSlideMenu(R.drawable.appicon,"תזכורות"));
+        listSliding.add(new ItemSlideMenu(R.drawable.appicon,"ארוחות"));
+        listSliding.add(new ItemSlideMenu(R.drawable.appicon,"הזרקות"));
+        adapter = new SlidingMenuAdapter(this,listSliding);
+        listViewSliding.setAdapter(adapter);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle("תפריט");
+        listViewSliding.setItemChecked(0,true);
+       drawerLayout.closeDrawer(listViewSliding);
+
+      //  replaceFragments(1);
+
+        listViewSliding.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                setTitle(listSliding.get(position).getTitle());
+                listViewSliding.setItemChecked(position,true);
+                replaceFragments(position);
+                drawerLayout.closeDrawer(listViewSliding);
+            }
+        });
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.drawer_opened, R.string.drawer_closed){
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                invalidateOptionsMenu();
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+                invalidateOptionsMenu();
+            }
+        };
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(actionBarDrawerToggle.onOptionsItemSelected(item))
+        {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+    @Override
+    public void onPostCreate(Bundle savedInstanceState)
+    {
+        super.onPostCreate(savedInstanceState);
+        actionBarDrawerToggle.syncState();
+    }
+
+    private void replaceFragments(int pos)
+    {
+       switch(pos)
+        {
+            case 0:
+            {
+                buildOptionsMessage();
+                break;
+            }
+            case 1:
+            {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                NotificationsSettings f = new NotificationsSettings();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("person", p);
+                f.setArguments(bundle);
+                fragmentTransaction.replace(R.id.main_content,f);
+                fragmentTransaction.commit();
+                break;
+            }
+            case 2:
+            {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                FoodInsertion f = new FoodInsertion();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("person", p);
+                f.setArguments(bundle);
+                //fragmentTransaction.replace(R.id.main_page2, f);
+                //fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.replace(R.id.main_content,f);
+                fragmentTransaction.commit();
+                break;
+            }
+            case 3:
+            {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                HistoryDisplay f = new HistoryDisplay();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("person", p);
+                f.setArguments(bundle);
+                //fragmentTransaction.replace(R.id.main_page2, f);
+                //fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.replace(R.id.main_content,f);
+                fragmentTransaction.commit();
+            }
+        }
     }
 
 
@@ -89,7 +227,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
     @Override
     public void onClick(View v)
     {
-        int id = v.getId();
+       int id = v.getId();
 
         switch(id)
         {
@@ -117,54 +255,59 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                 f.setArguments(bundle);
                 //fragmentTransaction.replace(R.id.main_page2, f);
                 //fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.replace(R.id.fregmentPlace,f);
+                fragmentTransaction.replace(R.id.main_content,f);
                 fragmentTransaction.commit();
                 break;
-            }
-            case R.id.btn:
-            {
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                InsulinCalculate f = new InsulinCalculate();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("person", p);
-                f.setArguments(bundle);
-                //fragmentTransaction.replace(R.id.main_page2, f);
-                //fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.replace(R.id.fregmentPlace,f);
-                fragmentTransaction.commit();
-                break;
-            }
-
-            case R.id.btnfood:
-            {
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                FoodInsertion f = new FoodInsertion();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("person", p);
-                f.setArguments(bundle);
-                //fragmentTransaction.replace(R.id.main_page2, f);
-                //fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.replace(R.id.fregmentPlace,f);
-                fragmentTransaction.commit();
-                break;
-            }
-
-            case R.id.btnReminders:
-            {
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                NotificationsSettings f = new NotificationsSettings();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("person", p);
-                f.setArguments(bundle);
-                fragmentTransaction.replace(R.id.fregmentPlace,f);
-                fragmentTransaction.commit();
-                break;
-            }
-        }
-    }
+           }
+//            case R.id.btn:
+//            {
+//                buildOptionsMessage();
+//                break;
+//            }
+//
+//            case R.id.btnfood:
+//            {
+//                FragmentManager fragmentManager = getFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                FoodInsertion f = new FoodInsertion();
+//                Bundle bundle = new Bundle();
+//                bundle.putSerializable("person", p);
+//                f.setArguments(bundle);
+//                //fragmentTransaction.replace(R.id.main_page2, f);
+//                //fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.replace(R.id.fregmentPlace,f);
+//                fragmentTransaction.commit();
+//                break;
+//            }
+//
+//            case R.id.btnReminders:
+//            {
+//                FragmentManager fragmentManager = getFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                NotificationsSettings f = new NotificationsSettings();
+//                Bundle bundle = new Bundle();
+//                bundle.putSerializable("person", p);
+//                f.setArguments(bundle);
+//                fragmentTransaction.replace(R.id.fregmentPlace,f);
+//                fragmentTransaction.commit();
+//                break;
+//            }
+//
+//            case R.id.btnHistory:
+//            {
+//                FragmentManager fragmentManager = getFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                HistoryDisplay f = new HistoryDisplay();
+//                Bundle bundle = new Bundle();
+//                bundle.putSerializable("person", p);
+//                f.setArguments(bundle);
+//                //fragmentTransaction.replace(R.id.main_page2, f);
+//                //fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.replace(R.id.fregmentPlace,f);
+//                fragmentTransaction.commit();
+//            }
+      }
+   }
 
 
     @Override
@@ -212,6 +355,39 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                         dialog.cancel();
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    private void buildOptionsMessage() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("באיזה צורה הינך צורך אינסולין?")
+                .setCancelable(false)
+                .setPositiveButton("משאבה", new DialogInterface.OnClickListener() {
+                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        FragmentManager fragmentManager = getFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        ExtractingCalculate f = new ExtractingCalculate();
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("person", p);
+                        f.setArguments(bundle);
+                        fragmentTransaction.replace(R.id.fregmentPlace,f);
+                        fragmentTransaction.commit();
+
+                    }
+                })
+                .setNegativeButton("הזרקה", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        FragmentManager fragmentManager = getFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        InsulinCalculate f = new InsulinCalculate();
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("person", p);
+                        f.setArguments(bundle);
+                        fragmentTransaction.replace(R.id.fregmentPlace,f);
+                        fragmentTransaction.commit();
                     }
                 });
         final AlertDialog alert = builder.create();
