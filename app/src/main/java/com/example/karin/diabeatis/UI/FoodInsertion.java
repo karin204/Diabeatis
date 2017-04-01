@@ -2,6 +2,8 @@ package com.example.karin.diabeatis.UI;
 
 import android.app.Application;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -21,12 +23,15 @@ import android.widget.TextView;
 import com.example.karin.diabeatis.R;
 import com.example.karin.diabeatis.logic.Food;
 import com.example.karin.diabeatis.logic.FoodDbHandler;
+import com.example.karin.diabeatis.logic.Person;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 /**
@@ -43,11 +48,13 @@ public class FoodInsertion extends Fragment implements View.OnClickListener {
     private ArrayList<Food> foodsInFireBase;
     private ArrayAdapter<String> adapter;
     private ArrayList<String> foodsForAdapter;
+    private Person p;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View v = inflater.inflate(R.layout.food_insertion, container, false);
         activity = this.getActivity().getApplication();
+        p = (Person) getArguments().getSerializable("person");
         foodDbHandler = FoodDbHandler.getInstance(v.getContext());
         tableLayout = (TableLayout) v.findViewById(R.id.tableLayout);
         calcBtn = (Button) v.findViewById(R.id.calcBtn);
@@ -82,7 +89,7 @@ public class FoodInsertion extends Fragment implements View.OnClickListener {
                         if(f.toString().equals(fullName))
                         {
                             edit1.setText(f.getFoodQuantity() + "");
-                            edit2.setText(f.getFoodCal() + "");
+                            edit2.setText(f.getFoodCarbs() + "");
                             edit3.setText(f.getFoodName());
                             break;
                         }
@@ -108,15 +115,10 @@ public class FoodInsertion extends Fragment implements View.OnClickListener {
                 Food newFood = dataSnapshot.getValue(Food.class);
                 foodsInFireBase.add(newFood);
                 foodsForAdapter.add(newFood.toString());
-                System.out.println("name " + newFood.getFoodName());
-                System.out.println("Cal: " + newFood.getFoodCal());
-                System.out.println("size: " + newFood.getFoodQuantity());
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                //Food newFood = dataSnapshot.getValue(Food.class);
-                //foodsInFireBase.add(newFood);
 
             }
 
@@ -171,15 +173,27 @@ public class FoodInsertion extends Fragment implements View.OnClickListener {
             }
         }
 
-        if(foods.size() > 0) {
+        if(foods.size() > 0)
+        {
+
             for (Food f : foods) {
                 foodDbHandler.insertFood(f);
             }
-
-            //show calc
+            buildSubmitMessage(getTotalCarbs(foods));
         }
     }
 
+    public double getTotalCarbs(ArrayList<Food> foods)
+    {
+        double amount = 0;
+        for (Food f: foods) {
+            amount += f.getFoodCarbs();
+        }
+
+        double temp = 500/p.getDailyUnit();
+
+        return round(amount/temp,1);
+    }
     public Food newFood(String foodName, String calText, String qunText)
     {
         double cal;
@@ -187,7 +201,7 @@ public class FoodInsertion extends Fragment implements View.OnClickListener {
         Food f = null;
 
         if(!tryParseDouble(calText) || !tryParseDouble(qunText))
-            buildAlertMessage("קלוריות/כמות חייבות להיות בעלות ערך מספרי");
+            buildAlertMessage("פחמימות/כמות חייבות להיות בעלות ערך מספרי");
         else
         {
             cal = Double.parseDouble(calText);
@@ -212,7 +226,7 @@ public class FoodInsertion extends Fragment implements View.OnClickListener {
     private boolean foodInFireBase(Food f)
     {
         for (Food f1: foodsInFireBase) {
-            if(f1.getFoodName().equals(f.getFoodName()) && f1.getFoodCal() == f.getFoodCal() && f1.getFoodQuantity() == f.getFoodQuantity())
+            if(f1.getFoodName().equals(f.getFoodName()) && f1.getFoodCarbs() == f.getFoodCarbs() && f1.getFoodQuantity() == f.getFoodQuantity())
                 return true;
         }
         return false;
@@ -228,5 +242,38 @@ public class FoodInsertion extends Fragment implements View.OnClickListener {
                 });
         final AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    private void buildSubmitMessage(double amount) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getView().getContext());
+        builder.setMessage("עליך להזריק " + amount + " יחידות אינסולין")
+                .setCancelable(false)
+                .setPositiveButton("אישור", new DialogInterface.OnClickListener() {
+                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        dialog.cancel();
+                    }
+                })
+                .setNegativeButton("הכנסת נתונים", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        FragmentManager fragmentManager = getFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        HistoryDisplay f = new HistoryDisplay();
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("person", p);
+                        f.setArguments(bundle);
+                        fragmentTransaction.replace(R.id.fregmentPlace,f);
+                        fragmentTransaction.commit();
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 }

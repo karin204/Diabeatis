@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class Person implements Serializable
 {
     private String name;
+    private String lName;
     private int age;
     private double height;
     private double weight;
@@ -16,16 +17,19 @@ public class Person implements Serializable
     private String phone;
     private History history;
     private int totalCheck;
+    private int dailyUnit;
 
-    public Person(String name, int age, double height, double weight, int diabType, String phone)
+    public Person(String name, String lName, int age, double height, double weight, int diabType, String phone)
     {
         this.name = name;
+        this.lName = lName;
         this.age = age;
         this.height = height;
         this.weight = weight;
         this.diabType = diabType;
         this.phone = phone;
         this.totalCheck = 0;
+        this.dailyUnit = (int) (0.55 * weight);
     }
 
     public int getTotalCheck() {
@@ -43,6 +47,10 @@ public class Person implements Serializable
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getlName() {  return lName;   }
+
+    public void setlName(String lName) {    this.lName = lName; }
 
     public int getAge() {
         return age;
@@ -92,4 +100,7 @@ public class Person implements Serializable
         this.history = history;
     }
 
+    public int getDailyUnit() { return dailyUnit;   }
+
+    public void setDailyUnit(int dailyUnit) {   this.dailyUnit = dailyUnit; }
 }

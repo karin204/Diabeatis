@@ -7,15 +7,15 @@ package com.example.karin.diabeatis.logic;
 public class Food
 {
     private String foodName;
-    private double foodCal;
+    private double foodCarbs;
     private double foodQuantity;
 
     public Food()
     {   }
 
-    public Food(String foodName, double foodCal, double foodQuantity) {
+    public Food(String foodName, double foodCarbs, double foodQuantity) {
         this.foodName = foodName;
-        this.foodCal = foodCal;
+        this.foodCarbs = foodCarbs;
         this.foodQuantity = foodQuantity;
     }
 
@@ -27,12 +27,12 @@ public class Food
         this.foodName = foodName;
     }
 
-    public double getFoodCal() {
-        return foodCal;
+    public double getFoodCarbs() {
+        return foodCarbs;
     }
 
-    public void setFoodCal(double foodCal) {
-        this.foodCal = foodCal;
+    public void setFoodCarbs(double foodCarbs) {
+        this.foodCarbs = foodCarbs;
     }
 
     public double getFoodQuantity() {
@@ -45,6 +45,6 @@ public class Food
 
     public String toString()
     {
-        return foodName + " -  כלוריות: " + foodCal + " כמות: " + foodQuantity;
+        return foodName + " -  פחמימות: " + foodCarbs + " כמות: " + foodQuantity;
     }
 }

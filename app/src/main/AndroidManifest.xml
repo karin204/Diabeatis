@@ -28,18 +28,14 @@
         </activity>
         <activity android:name=".UI.MainPage" />
 
-        <receiver
-            android:name=".logic.MyBootReceiver"
-            android:enabled="true">
-
-            <!--
+        <receiver android:name=".BroadcastReceiver.MyBootReceiver" android:enabled="true" android:exported="false" android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"></action>
             </intent-filter>
-            -->
         </receiver>
 
-        <activity android:name=".UI.ExtractingCalculate"></activity>
+        <receiver android:name=".BroadcastReceiver.MyBroadcastReceiver" android:enabled="true"/>
+
     </application>
 
 </manifest>

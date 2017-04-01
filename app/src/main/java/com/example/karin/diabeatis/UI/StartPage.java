@@ -30,6 +30,8 @@ public class StartPage extends AppCompatActivity implements View.OnClickListener
     private RadioGroup radioGroupField;
     private EditText phoneText;
     private Button sendBtn;
+    private Person p = null;
+    private boolean edit = false;
     private String [] errorMsg = {"השדות חייבים להיות מלאים", "מספר טלפון לא תקין", "גיל/גובה/משקל יכול להכיל רק מספרים"};
     private SharedPreferences.Editor userEditor;
 
@@ -39,13 +41,17 @@ public class StartPage extends AppCompatActivity implements View.OnClickListener
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
         SharedPreferences userPref = getSharedPreferences("user", MODE_PRIVATE);
-        if(userPref.contains("initialize"))
+
+        p = (Person) getIntent().getSerializableExtra("person");
+
+        if(p == null && userPref.contains("initialize"))
         {
-            Person p = new Person(userPref.getString("name",""), userPref.getInt("age",0), userPref.getFloat("height",0), userPref.getFloat("weight",0),
+            Person p = new Person(userPref.getString("name",""), userPref.getString("lName",""), userPref.getInt("age",0), userPref.getFloat("height",0), userPref.getFloat("weight",0),
                     userPref.getInt("dbType",2), userPref.getString("phone",""));
 
             final Intent intent = new Intent(this, MainPage.class);
             intent.putExtra("person",p);
+            intent.putExtra("from","main");
             startActivity(intent);
             finish();
         }
@@ -61,12 +67,30 @@ public class StartPage extends AppCompatActivity implements View.OnClickListener
             phoneText = (EditText) findViewById(R.id.phone);
             sendBtn = (Button) findViewById(R.id.sendBtn);
             sendBtn.setOnClickListener(this);
+
+            if(p != null) {
+                edit = true;
+                fillFilds();
+            }
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        if(edit)
+        {
+            final Intent intent = new Intent(this, MainPage.class);
+            intent.putExtra("from","main");
+            startActivity(intent);
+            finish();
+        }
     }
 
     @Override
@@ -105,10 +129,11 @@ public class StartPage extends AppCompatActivity implements View.OnClickListener
             height = Double.parseDouble(heightText);
             dbType = Integer.parseInt(dbTypeText);
             age = Integer.parseInt(ageText);
-            Person p = buildNewPerson(fName, age, height, weight, dbType, phone);
+            Person p = buildNewPerson(fName, lName, age, height, weight, dbType, phone);
 
             final Intent intent = new Intent(this, MainPage.class);
             intent.putExtra("person",p);
+            intent.putExtra("from","main");
             startActivity(intent);
             finish();
         }
@@ -145,9 +170,10 @@ public class StartPage extends AppCompatActivity implements View.OnClickListener
         }
     }
 
-    private Person buildNewPerson(String fName, int age, double height, double weight, int dbType, String phone)
+    private Person buildNewPerson(String fName, String lName, int age, double height, double weight, int dbType, String phone)
     {
         userEditor.putString("name", fName);
+        userEditor.putString("lName", lName);
         userEditor.putInt("age", age);
         userEditor.putFloat("height", (float) height);
         userEditor.putFloat("weight", (float) weight);
@@ -156,7 +182,18 @@ public class StartPage extends AppCompatActivity implements View.OnClickListener
         userEditor.putBoolean("initialize", true);
         userEditor.apply();
 
-        Person p = new Person(fName, age, height, weight, dbType, phone);
+        Person p = new Person(fName, lName, age, height, weight, dbType, phone);
         return p;
+    }
+
+    private void fillFilds()
+    {
+        fNameText.setText(p.getName());
+        lNameText.setText(p.getlName());
+        ageTextField.setText(p.getAge() + "");
+        weightTextField.setText(p.getWeight() + "");
+        heightTextField.setText(p.getHeight() + "");
+        //radioGroupField.set(p.getName());
+        phoneText.setText(p.getPhone() + "");
     }
 }

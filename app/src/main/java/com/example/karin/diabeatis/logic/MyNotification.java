@@ -6,15 +6,24 @@ package com.example.karin.diabeatis.logic;
 
 public class MyNotification
 {
+    private int id;
     private int hour;
     private int minute;
     private boolean active;
 
-    public MyNotification(int hour, int minute, boolean active) {
+    public MyNotification()
+    {   }
+
+    public MyNotification(int id, int hour, int minute, boolean active) {
+        this.id = id;
         this.hour = hour;
         this.minute = minute;
         this.active = active;
     }
+
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id;   }
 
     public int getHour() {
         return hour;
@@ -35,4 +44,8 @@ public class MyNotification
     public String toString(){
         return (hour + ":" + minute);
     }
+
+    public boolean isActive() { return active;  }
+
+    public void setActive(boolean active) { this.active = active;   }
 }

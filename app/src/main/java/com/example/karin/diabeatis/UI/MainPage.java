@@ -7,6 +7,7 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -14,9 +15,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -27,7 +26,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 
 import com.example.karin.diabeatis.R;
 import com.example.karin.diabeatis.logic.ItemSlideMenu;
@@ -95,6 +93,8 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
 //        btnHistory.setOnClickListener(this);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         p = (Person) getIntent().getSerializableExtra("person");
+        if(p == null)
+            p = buildPerson();
 
         listViewSliding = (ListView)findViewById(R.id.lv_sliding_menu);
         drawerLayout = (DrawerLayout)findViewById(R.id.main_page2);
@@ -103,6 +103,8 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
         listSliding.add(new ItemSlideMenu(R.drawable.appicon,"תזכורות"));
         listSliding.add(new ItemSlideMenu(R.drawable.appicon,"ארוחות"));
         listSliding.add(new ItemSlideMenu(R.drawable.appicon,"הזרקות"));
+        listSliding.add(new ItemSlideMenu(R.drawable.appicon,"היסטוריה אוכל"));
+        listSliding.add(new ItemSlideMenu(R.drawable.appicon,"עריכת פרטים"));
         adapter = new SlidingMenuAdapter(this,listSliding);
         listViewSliding.setAdapter(adapter);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -135,6 +137,9 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
             }
         };
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
+
+        if(getIntent().getStringExtra("from").equals("noti"))
+            replaceFragments(3);
     }
 
 
@@ -179,7 +184,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("person", p);
                 f.setArguments(bundle);
-                fragmentTransaction.replace(R.id.main_content,f);
+                fragmentTransaction.replace(R.id.fregmentPlace,f);
                 fragmentTransaction.commit();
                 break;
             }
@@ -191,9 +196,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("person", p);
                 f.setArguments(bundle);
-                //fragmentTransaction.replace(R.id.main_page2, f);
-                //fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.replace(R.id.main_content,f);
+                fragmentTransaction.replace(R.id.fregmentPlace,f);
                 fragmentTransaction.commit();
                 break;
             }
@@ -205,10 +208,31 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("person", p);
                 f.setArguments(bundle);
-                //fragmentTransaction.replace(R.id.main_page2, f);
-                //fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.replace(R.id.main_content,f);
+                fragmentTransaction.replace(R.id.fregmentPlace,f);
                 fragmentTransaction.commit();
+                break;
+            }
+
+            case 4:
+            {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                FoodHistory f = new FoodHistory();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("person", p);
+                f.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fregmentPlace,f);
+                fragmentTransaction.commit();
+                break;
+            }
+
+            case 5:
+            {
+                final Intent intent = new Intent(this, StartPage.class);
+                intent.putExtra("person",p);
+                startActivity(intent);
+                finish();
+                break;
             }
         }
     }
@@ -222,6 +246,14 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 0);
         }
         locationManager.removeUpdates(this);
+    }
+
+    public Person buildPerson()
+    {
+        SharedPreferences userPref = getSharedPreferences("user", MODE_PRIVATE);
+        Person p = new Person(userPref.getString("name",""), userPref.getString("lName",""), userPref.getInt("age",0), userPref.getFloat("height",0), userPref.getFloat("weight",0),
+                userPref.getInt("dbType",2), userPref.getString("phone",""));
+        return p;
     }
 
     @Override
@@ -253,9 +285,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                 bundle.putDouble("Longitude",longitude);
                 bundle.putString("Number",p.getPhone());
                 f.setArguments(bundle);
-                //fragmentTransaction.replace(R.id.main_page2, f);
-                //fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.replace(R.id.main_content,f);
+                fragmentTransaction.replace(R.id.fregmentPlace,f);
                 fragmentTransaction.commit();
                 break;
            }
