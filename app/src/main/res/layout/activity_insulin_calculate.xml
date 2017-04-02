@@ -25,14 +25,16 @@
             android:layout_height="60dp"
             android:text="שלום   "
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="40sp" />
+            android:textSize="40sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtNameE"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="40sp" />
+            android:textSize="40sp"
+            android:textStyle="bold" />
 
     </TableRow>
 
@@ -61,7 +63,8 @@
                     android:layout_width="175dp"
                     android:gravity="center_horizontal"
                     android:text="מינון"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/unit"
@@ -69,7 +72,8 @@
                     android:layout_height="30dp"
                     android:gravity="center_horizontal"
                     android:text="יחידות אינסולין"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold" />
 
             </TableRow>
 
@@ -84,7 +88,8 @@
                     android:layout_height="40dp"
                     android:gravity="center_horizontal"
                     android:text="מינון 1"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/res1"
@@ -93,7 +98,8 @@
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold" />
 
             </TableRow>
 
@@ -108,7 +114,8 @@
                     android:layout_height="40dp"
                     android:gravity="center_horizontal"
                     android:text="מינון 2"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/res2"
@@ -117,7 +124,8 @@
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold" />
 
             </TableRow>
 
@@ -132,7 +140,8 @@
                     android:layout_height="40dp"
                     android:gravity="center_horizontal"
                     android:text="מינון 3"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/res3"
@@ -141,7 +150,8 @@
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold" />
 
             </TableRow>
 
@@ -156,7 +166,8 @@
                     android:layout_height="40dp"
                     android:gravity="center_horizontal"
                     android:text="מינון 4"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/res4"
@@ -165,7 +176,8 @@
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold" />
 
             </TableRow>
 
@@ -180,7 +192,8 @@
                     android:layout_height="40dp"
                     android:gravity="center_horizontal"
                     android:text="מינון 5"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/res5"
@@ -189,7 +202,8 @@
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold" />
 
             </TableRow>
         </TableLayout>
@@ -206,7 +220,8 @@
                 android:background="@android:color/transparent"
                 android:backgroundTint="@android:color/transparent"
                 android:text="מחק"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btnOk"
@@ -215,7 +230,8 @@
                 android:background="@android:color/transparent"
                 android:backgroundTint="@android:color/transparent"
                 android:text="חישוב"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtFinal"
@@ -224,7 +240,8 @@
                 android:gravity="center_horizontal|center"
                 android:text="0"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
         </TableRow>
 
@@ -236,6 +253,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="27dp" />
+        android:layout_marginBottom="27dp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

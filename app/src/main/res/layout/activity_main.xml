@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/register">
@@ -27,7 +28,8 @@
         android:layout_marginTop="17dp"
         android:text="אנא מלא את פרטייך האישיים"
         android:textColor="@color/colorPrimaryDark"
-        android:textColorLink="@color/colorPrimaryDark" />
+        android:textColorLink="@color/colorPrimaryDark"
+        android:textStyle="bold" />
 
     <TableLayout
         android:id="@+id/tableLayout"
@@ -53,7 +55,8 @@
                 android:text="שם פרטי:"
                 android:textColor="@color/colorPrimaryDark"
                 android:textColorLink="@color/colorPrimaryDark"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/fName"
@@ -67,7 +70,8 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textColorLink="@color/colorPrimaryDark"
                 android:textCursorDrawable="@color/colorPrimaryDark"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
         </TableRow>
 
@@ -87,7 +91,8 @@
                 android:text="שם משפחה:"
                 android:textColor="@color/colorPrimaryDark"
                 android:textColorLink="@color/colorPrimaryDark"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/lName"
@@ -101,7 +106,8 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textColorLink="@color/colorPrimaryDark"
                 android:textCursorDrawable="@color/colorPrimaryDark"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
         </TableRow>
 
@@ -121,7 +127,8 @@
                 android:text="גיל:"
                 android:textColor="@color/colorPrimaryDark"
                 android:textColorLink="@color/colorPrimaryDark"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/age"
@@ -135,7 +142,8 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textColorLink="@color/colorPrimaryDark"
                 android:textCursorDrawable="@color/colorPrimaryDark"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
         </TableRow>
 
@@ -155,7 +163,8 @@
                 android:text="משקל(קג):"
                 android:textColor="@color/colorPrimaryDark"
                 android:textColorLink="@color/colorPrimaryDark"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/weight"
@@ -169,7 +178,8 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textColorLink="@color/colorPrimaryDark"
                 android:textCursorDrawable="@color/colorPrimaryDark"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
         </TableRow>
 
@@ -189,7 +199,8 @@
                 android:text="גובה (סמ):"
                 android:textColor="@color/colorPrimaryDark"
                 android:textColorLink="@color/colorPrimaryDark"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/height"
@@ -203,7 +214,8 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textColorLink="@color/colorPrimaryDark"
                 android:textCursorDrawable="@color/colorPrimaryDark"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
         </TableRow>
 
@@ -230,7 +242,8 @@
                     android:text="סוג סכרת:"
                     android:textColor="@color/colorPrimaryDark"
                     android:textColorLink="@color/colorPrimaryDark"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <RadioButton
                     android:id="@+id/radioTwo"
@@ -241,7 +254,9 @@
                     android:text="2"
                     android:textColor="@color/colorPrimaryDark"
                     android:textColorLink="@color/colorPrimaryDark"
-                    android:textCursorDrawable="@color/colorPrimaryDark" />
+                    android:textCursorDrawable="@color/colorPrimaryDark"
+                    android:textStyle="bold"
+                    app:buttonTint="@color/colorPrimaryDark" />
 
                 <RadioButton
                     android:id="@+id/radioOne"
@@ -249,7 +264,9 @@
                     android:layout_height="wrap_content"
                     android:text="1"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textColorLink="@color/colorPrimaryDark" />
+                    android:textColorLink="@color/colorPrimaryDark"
+                    android:textStyle="bold"
+                    app:buttonTint="@color/colorPrimaryDark" />
 
             </RadioGroup>
 
@@ -270,7 +287,8 @@
                 android:layout_marginRight="12dp"
                 android:text="מספר חירום"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/phone"
@@ -284,7 +302,8 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textColorLink="@color/colorPrimaryDark"
                 android:textCursorDrawable="@color/colorPrimaryDark"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
         </TableRow>
 
@@ -300,6 +319,7 @@
         android:layout_marginTop="13dp"
         android:background="@android:color/transparent"
         android:text="שליחה"
-        android:textColor="@color/colorPrimaryDark" />
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold" />
 
 </RelativeLayout>

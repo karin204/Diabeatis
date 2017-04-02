@@ -8,315 +8,431 @@
     tools:context="com.example.karin.diabeatis.UI.ExtractingCalculate">
 
     <TextView
+        android:id="@+id/txtHello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="שלום "
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/txtAns"
+        android:layout_marginStart="23dp" />
+
+    <TextView
         android:id="@+id/txtNameE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/txtHello"
-        android:layout_alignLeft="@+id/txtHello"
-        android:layout_alignStart="@+id/txtHello"
-        android:layout_toLeftOf="@+id/txtHello"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="40sp" />
-
-    <TextView
-        android:id="@+id/txtHello"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="30dp"
-        android:text="שלום "
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/txtHello"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="40sp" />
 
     <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="337dp"
-        android:layout_below="@+id/txtNameE"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="528dp">
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tableLayout3">
 
         <TableRow
             android:id="@+id/line1"
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/txtFrom"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="10dp"
                 android:gravity="center_horizontal"
                 android:text="משעה"
-                android:textSize="8sp" />
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
             <EditText
                 android:id="@+id/hourFrom1"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="10dp"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textCursorDrawable="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtTo1"
-                android:layout_width="10dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="10dp"
                 android:gravity="center_horizontal"
                 android:text="עד שעה"
-                android:textSize="8sp" />
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
             <EditText
                 android:id="@+id/hourTo1"
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"
-                android:height="10dp"
-                android:ems="10"
-                android:inputType="time" />
-
-            <EditText
-                android:id="@+id/result1"
-                android:layout_width="20dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="10dp"
                 android:ems="10"
                 android:inputType="time"
-                android:textSize="8sp" />
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textCursorDrawable="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/result1"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:height="10dp"
+                android:ems="10"
+                android:inputType="time"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textCursorDrawable="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtUnit1"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="10dp"
                 android:gravity="center_horizontal"
                 android:text="יחידות לשעה"
-                android:textSize="8sp" />
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
         </TableRow>
 
         <TableRow
             android:id="@+id/line2"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/txtFrom2"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="10dp"
                 android:gravity="center_horizontal"
                 android:text="משעה"
-                android:textSize="8sp" />
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
             <EditText
                 android:id="@+id/hourFrom2"
-                android:layout_width="20dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="10dp"
                 android:ems="10"
-                android:inputType="time" />
+                android:inputType="time"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textCursorDrawable="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtTo2"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="10dp"
                 android:gravity="center_horizontal"
                 android:text="עד שעה"
-                android:textSize="8sp" />
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
             <EditText
                 android:id="@+id/hourTo2"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="10dp"
                 android:ems="10"
-                android:inputType="time" />
+                android:inputType="time"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textCursorDrawable="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
             <EditText
                 android:id="@+id/result2"
-                android:layout_width="20dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="10dp"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textCursorDrawable="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtUnit2"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="10dp"
                 android:gravity="center_horizontal"
                 android:text="יחידות לשעה"
-                android:textSize="8sp" />
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
         </TableRow>
 
         <TableRow
             android:id="@+id/line3"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/txtFrom3"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="10dp"
                 android:gravity="center_horizontal"
                 android:text="משעה"
-                android:textSize="8sp" />
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
             <EditText
                 android:id="@+id/hourFrom3"
-                android:layout_width="20dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="10dp"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textCursorDrawable="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtTo3"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="10dp"
                 android:gravity="center_horizontal"
                 android:text="עד שעה"
-                android:textSize="8sp" />
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
             <EditText
                 android:id="@+id/hourTo3"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="10dp"
                 android:ems="10"
-                android:inputType="time" />
+                android:inputType="time"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textCursorDrawable="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
             <EditText
                 android:id="@+id/result3"
-                android:layout_width="20dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="10dp"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textCursorDrawable="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtUnit3"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="10dp"
                 android:gravity="center_horizontal"
                 android:text="יחידות לשעה"
-                android:textSize="8sp" />
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
         </TableRow>
 
         <TableRow
             android:id="@+id/line4"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/txtFrom4"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="10dp"
                 android:gravity="center_horizontal"
                 android:text="משעה"
-                android:textSize="8sp" />
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
             <EditText
                 android:id="@+id/hourFrom4"
-                android:layout_width="20dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="10dp"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textCursorDrawable="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtTo4"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="10dp"
                 android:gravity="center_horizontal"
                 android:text="עד שעה"
-                android:textSize="8sp" />
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
             <EditText
                 android:id="@+id/hourTo4"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="10dp"
                 android:ems="10"
-                android:inputType="time" />
+                android:inputType="time"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textCursorDrawable="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
             <EditText
                 android:id="@+id/result4"
-                android:layout_width="20dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="10dp"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textCursorDrawable="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtUnit4"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="10dp"
                 android:gravity="center_horizontal"
                 android:text="יחידות לשעה"
-                android:textSize="8sp" />
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
         </TableRow>
 
         <TableRow
             android:id="@+id/line5"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/txtFrom5"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="20dp"
                 android:gravity="center_horizontal"
                 android:text="משעה"
-                android:textSize="8sp" />
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
             <EditText
                 android:id="@+id/hourFrom5"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="20dp"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textCursorDrawable="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtTo5"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="20dp"
                 android:gravity="center_horizontal"
                 android:text="עד שעה"
-                android:textSize="8sp" />
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
             <EditText
                 android:id="@+id/hourTo5"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="20dp"
                 android:ems="10"
                 android:inputType="time"
-                tools:id="hourTo5" />
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textCursorDrawable="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
             <EditText
                 android:id="@+id/result5"
-                android:layout_width="20dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:height="10dp"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textCursorDrawable="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtUnit5"
@@ -325,7 +441,10 @@
                 android:height="10dp"
                 android:gravity="center_horizontal"
                 android:text="יחידות לשעה"
-                android:textSize="8sp" />
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="9sp"
+                tools:textStyle="bold" />
 
         </TableRow>
 
@@ -335,12 +454,13 @@
 
             <Button
                 android:id="@+id/btnDelete"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:backgroundTint="@android:color/transparent"
                 android:text="מחק"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btnCalc"
@@ -349,7 +469,8 @@
                 android:background="@android:color/transparent"
                 android:backgroundTint="@android:color/transparent"
                 android:text="חישוב"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtFinalE"
@@ -358,7 +479,8 @@
                 android:gravity="center_horizontal|center"
                 android:text="0"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:textStyle="bold" />
         </TableRow>
 
     </TableLayout>
@@ -369,6 +491,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="36dp" />
+        android:layout_marginBottom="36dp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

@@ -96,9 +96,10 @@ public class FoodInsertion extends Fragment implements View.OnClickListener {
                     }
                 }
             });
-            row.addView(edit1);
-            row.addView(edit2);
             row.addView(edit3);
+            row.addView(edit2);
+            row.addView(edit1);
+
             tableLayout.addView(row, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
         }
         return v;
