@@ -89,6 +89,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
         listViewSliding = (ListView)findViewById(R.id.lv_sliding_menu);
         drawerLayout = (DrawerLayout)findViewById(R.id.main_page2);
         listSliding = new ArrayList<>();
+        listSliding.add(new ItemSlideMenu(R.drawable.hist,"עמוד הבית"));
         listSliding.add(new ItemSlideMenu(R.drawable.hist,"הסטוריה"));
         listSliding.add(new ItemSlideMenu(R.drawable.alarmicon,"תזכורות"));
         listSliding.add(new ItemSlideMenu(R.drawable.food,"ארוחות"));
@@ -99,7 +100,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
         listViewSliding.setAdapter(adapter);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("תפריט");
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.CYAN));
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.BLUE));
         listViewSliding.setItemChecked(0,true);
         drawerLayout.closeDrawer(listViewSliding);
 
@@ -131,6 +132,8 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
 
         if(getIntent().getStringExtra("from").equals("noti"))
             replaceFragments(3);
+        else
+            replaceFragments(0);
     }
 
 
@@ -165,36 +168,20 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
     {
        switch(pos)
         {
-            case 3:
-            {
-                buildOptionsMessage();
-                break;
-            }
-            case 1:
-            {
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                NotificationsSettings f = new NotificationsSettings();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("person", p);
-                f.setArguments(bundle);
-                fragmentTransaction.replace(R.id.fregmentPlace,f);
-                fragmentTransaction.commit();
-                break;
-            }
-            case 2:
-            {
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                FoodInsertion f = new FoodInsertion();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("person", p);
-                f.setArguments(bundle);
-                fragmentTransaction.replace(R.id.fregmentPlace,f);
-                fragmentTransaction.commit();
-                break;
-            }
             case 0:
+            {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                HomeFragment f = new HomeFragment();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("person", p);
+                f.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fregmentPlace,f);
+                fragmentTransaction.commit();
+                break;
+            }
+
+            case 1:
             {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -207,7 +194,38 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                 break;
             }
 
+            case 2:
+            {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                NotificationsSettings f = new NotificationsSettings();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("person", p);
+                f.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fregmentPlace,f);
+                fragmentTransaction.commit();
+                break;
+            }
+            case 3:
+            {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                FoodInsertion f = new FoodInsertion();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("person", p);
+                f.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fregmentPlace,f);
+                fragmentTransaction.commit();
+                break;
+            }
+
             case 4:
+            {
+                buildOptionsMessage();
+                break;
+            }
+
+            case 5:
             {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -220,7 +238,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                 break;
             }
 
-            case 5:
+            case 6:
             {
                 final Intent intent = new Intent(this, StartPage.class);
                 intent.putExtra("person",p);
@@ -285,7 +303,6 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
            }
       }
    }
-
 
     @Override
     protected void onResume() {

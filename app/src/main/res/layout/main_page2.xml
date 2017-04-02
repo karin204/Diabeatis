@@ -4,7 +4,7 @@
     android:id="@+id/main_page2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/start"
+    android:background="@drawable/b1"
     android:orientation="vertical"
     tools:context="com.example.karin.diabeatis.UI.MainPage">
 

@@ -2,21 +2,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/b1"
-    android:descendantFocusability="beforeDescendants"
-    android:focusableInTouchMode="true">
+    android:background="@drawable/b1">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="33dp"
-        android:text="נא הכנס את פרטי הארוחה:"
+        android:layout_marginTop="22dp"
+        android:text="שלום "
         android:textColor="@color/colorPrimary"
-        android:textSize="18dp"
-        android:textStyle="bold" />
+        android:textCursorDrawable="@color/common_google_signin_btn_text_dark_focused"
+        android:textDirection="rtl"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <TableLayout
         android:id="@+id/tableLayout"
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView3"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="100dp">
 
         <TableRow
             android:layout_width="wrap_content"
@@ -32,49 +32,56 @@
             android:layout_centerHorizontal="true">
 
             <TextView
-                android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginLeft="140dp"
-                android:text="שם"
-                android:textColor="@color/colorPrimary" />
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="30dp"
                 android:inputType="numberDecimal"
-                android:text="קלוריות"
+                android:text="יחידות אינסולין ליום:"
+                android:textSize="20dp"
                 android:textColor="@color/colorPrimary" />
 
             <TextView
+                android:id="@+id/insPerDayText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginLeft="30dp"
                 android:inputType="numberDecimal"
                 android:text="כמות"
+                android:textSize="20dp"
+                android:textColor="@color/colorPrimary" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:inputType="numberDecimal"
+                android:text="יחידות אינסולין מורידה:"
+                android:textSize="20dp"
                 android:textColor="@color/colorPrimary" />
 
+            <TextView
+                android:id="@+id/insLowerText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:inputType="numberDecimal"
+                android:text="כמות"
+                android:textSize="20dp"
+                android:textColor="@color/colorPrimary" />
         </TableRow>
 
 
     </TableLayout>
 
-    <Button
-        android:id="@+id/calcBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="92dp"
-        android:background="@android:color/transparent"
-        android:text="חשב"
-        android:textColor="@color/colorPrimary" />
 </RelativeLayout>

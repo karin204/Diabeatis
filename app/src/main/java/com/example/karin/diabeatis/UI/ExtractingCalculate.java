@@ -3,7 +3,6 @@ package com.example.karin.diabeatis.UI;
 import android.app.Application;
 import android.app.Fragment;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -22,11 +20,9 @@ import com.example.karin.diabeatis.R;
 import com.example.karin.diabeatis.logic.InputFilterMinMax;
 import com.example.karin.diabeatis.logic.Person;
 
-import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class ExtractingCalculate extends Fragment implements View.OnClickListener, View.OnFocusChangeListener{
 
@@ -51,14 +47,14 @@ public class ExtractingCalculate extends Fragment implements View.OnClickListene
         activity = this.getActivity().getApplication();
         p = (Person) getArguments().getSerializable("person");
         result = (TextView)v.findViewById(R.id.txtFinalE);
-        txtName = (TextView)v.findViewById(R.id.txtNameE);
-        txtName.setText(p.getName());
+        txtName = (TextView)v.findViewById(R.id.txtHello);
+        txtName.setText("שלום " + p.getName());
         ans = (TextView)v.findViewById(R.id.txtAns);
         calc = (Button)v.findViewById(R.id.btnCalc);
         del = (Button)v.findViewById(R.id.btnDelete);
         calc.setOnClickListener(this);
         del.setOnClickListener(this);
-        tableLayout = (TableLayout) v.findViewById(R.id.tableLayout3);
+        tableLayout = (TableLayout) v.findViewById(R.id.top);
         createTable();
 
         return v;
@@ -71,7 +67,12 @@ public class ExtractingCalculate extends Fragment implements View.OnClickListene
             {
                 case R.id.btnDelete:
                 {
-
+                    for(int i=0;i<hoursTo.size();i++) {
+                        hoursTo.get(i).setText("08");
+                        hoursFrom.get(i).setText("08");
+                        minutesTo.get(i).setText("00");
+                        minutesFrom.get(i).setText("00");
+                    }
                     break;
                 }
                 case R.id.btnCalc:
@@ -89,6 +90,12 @@ public class ExtractingCalculate extends Fragment implements View.OnClickListene
 
         for(int i=0; i<5; i++)
         {
+            TableRow.LayoutParams params = new TableRow.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(0, 0, 80, 0);
+            TableRow.LayoutParams params2 = new TableRow.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT);
+            params2.setMargins(0, 0, 115, 0);
+            TableRow.LayoutParams params3 = new TableRow.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT);
+            params3.setMargins(0, 0, 160, 0);
             TableRow row = new TableRow(v.getContext());
             row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
             EditText hourFrom = new EditText(v.getContext());
@@ -108,7 +115,7 @@ public class ExtractingCalculate extends Fragment implements View.OnClickListene
             t.setText(":");
 
             EditText minuteFrom = new EditText(v.getContext());
-            minuteFrom.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+            minuteFrom.setLayoutParams(params);
             minuteFrom.setTextSize(20);
             minuteFrom.setText("00");
             minuteFrom.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -136,7 +143,7 @@ public class ExtractingCalculate extends Fragment implements View.OnClickListene
             t2.setText(":");
 
             EditText minuteTo = new EditText(v.getContext());
-            minuteTo.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+            minuteTo.setLayoutParams(params2);
             minuteTo.setTextSize(20);
             minuteTo.setText("00");
             minuteTo.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -148,7 +155,7 @@ public class ExtractingCalculate extends Fragment implements View.OnClickListene
             minutesTo.add(minuteTo);
 
             EditText unit = new EditText(v.getContext());
-            unit.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+            unit.setLayoutParams(params3);
             unit.setTextSize(20);
             unit.setText("00");
             unit.setInputType(InputType.TYPE_CLASS_NUMBER);

@@ -38,9 +38,9 @@ public class HistoryDisplay extends Fragment implements View.OnClickListener
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_history_display, container, false);
         activity = this.getActivity().getApplication();
-        txtName = (TextView) v.findViewById(R.id.txtNameE);
+        txtName = (TextView) v.findViewById(R.id.txtChoose);
         p = (Person) getArguments().getSerializable("person");
-        txtName.setText(p.getName());
+        txtName.setText("שלום " + p.getName());
         checkDbHandler = CheckDbHandler.getInstance(v.getContext());
         newCheck = (EditText) v.findViewById(R.id.check);
         newCheck.setInputType(InputType.TYPE_CLASS_NUMBER);
