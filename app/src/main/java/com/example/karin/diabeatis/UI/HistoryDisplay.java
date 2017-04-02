@@ -64,11 +64,12 @@ public class HistoryDisplay extends Fragment implements View.OnClickListener
 
         switch(id)
         {
-            case R.id.btnAdd:
-            {
-                if(!tryParseDouble(newCheck.getText().toString()) )
+            case R.id.btnAdd: {
+                if (!tryParseDouble(newCheck.getText().toString()))
                     buildAlertMessage("בדיקה חייבת להיות בעלת ערך מספרי");
-                insertCheck();
+                else
+                    insertCheck();
+
                 break;
             }
             case R.id.btnShow:
@@ -94,11 +95,13 @@ public class HistoryDisplay extends Fragment implements View.OnClickListener
         checksHistory = checkDbHandler.getAllChecks();
         if(checksHistory.size() == 0)
             buildAlertMessage("לא קיימת הסטוריית בדיקות");
-        DataPoint[] pointsData = new DataPoint[checksHistory.size()];
-        for (int i = 0; i<checksHistory.size(); i++)
-                pointsData[i] = new DataPoint(i,checksHistory.get(i).getCheck());
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(pointsData);
-        graph.addSeries(series);
+        else {
+            DataPoint[] pointsData = new DataPoint[checksHistory.size()];
+            for (int i = 0; i < checksHistory.size(); i++)
+                pointsData[i] = new DataPoint(i, checksHistory.get(i).getCheck());
+            LineGraphSeries<DataPoint> series = new LineGraphSeries<>(pointsData);
+            graph.addSeries(series);
+        }
     }
 
     private void buildAlertMessage(String msg) {
