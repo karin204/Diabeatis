@@ -1,7 +1,6 @@
 package com.example.karin.diabeatis.UI;
 
 import android.Manifest;
-import android.app.ActionBar;
 import android.app.AlarmManager;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -137,7 +136,6 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu,menu);
         return true;
     }
 
@@ -180,7 +178,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("person", p);
                 f.setArguments(bundle);
-                fragmentTransaction.replace(R.id.main_content,f);
+                fragmentTransaction.replace(R.id.fregmentPlace,f);
                 fragmentTransaction.commit();
                 break;
             }
@@ -192,7 +190,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("person", p);
                 f.setArguments(bundle);
-                fragmentTransaction.replace(R.id.main_content,f);
+                fragmentTransaction.replace(R.id.fregmentPlace,f);
                 fragmentTransaction.commit();
                 break;
             }
@@ -204,7 +202,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("person", p);
                 f.setArguments(bundle);
-                fragmentTransaction.replace(R.id.main_content,f);
+                fragmentTransaction.replace(R.id.fregmentPlace,f);
                 fragmentTransaction.commit();
                 break;
             }
@@ -217,7 +215,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("person", p);
                 f.setArguments(bundle);
-                fragmentTransaction.replace(R.id.main_content,f);
+                fragmentTransaction.replace(R.id.fregmentPlace,f);
                 fragmentTransaction.commit();
                 break;
             }
@@ -285,53 +283,6 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                 fragmentTransaction.commit();
                 break;
            }
-//            case R.id.btn:
-//            {
-//                buildOptionsMessage();
-//                break;
-//            }
-//
-//            case R.id.btnfood:
-//            {
-//                FragmentManager fragmentManager = getFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                FoodInsertion f = new FoodInsertion();
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable("person", p);
-//                f.setArguments(bundle);
-//                //fragmentTransaction.replace(R.id.main_page2, f);
-//                //fragmentTransaction.addToBackStack(null);
-//                fragmentTransaction.replace(R.id.fregmentPlace,f);
-//                fragmentTransaction.commit();
-//                break;
-//            }
-//
-//            case R.id.btnReminders:
-//            {
-//                FragmentManager fragmentManager = getFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                NotificationsSettings f = new NotificationsSettings();
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable("person", p);
-//                f.setArguments(bundle);
-//                fragmentTransaction.replace(R.id.fregmentPlace,f);
-//                fragmentTransaction.commit();
-//                break;
-//            }
-//
-//            case R.id.btnHistory:
-//            {
-//                FragmentManager fragmentManager = getFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                HistoryDisplay f = new HistoryDisplay();
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable("person", p);
-//                f.setArguments(bundle);
-//                //fragmentTransaction.replace(R.id.main_page2, f);
-//                //fragmentTransaction.addToBackStack(null);
-//                fragmentTransaction.replace(R.id.fregmentPlace,f);
-//                fragmentTransaction.commit();
-//            }
       }
    }
 
@@ -399,7 +350,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("person", p);
                         f.setArguments(bundle);
-                        fragmentTransaction.replace(R.id.main_content,f);
+                        fragmentTransaction.replace(R.id.fregmentPlace,f);
                         fragmentTransaction.commit();
 
                     }
@@ -412,7 +363,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("person", p);
                         f.setArguments(bundle);
-                        fragmentTransaction.replace(R.id.main_content,f);
+                        fragmentTransaction.replace(R.id.fregmentPlace,f);
                         fragmentTransaction.commit();
                     }
                 });

@@ -34,7 +34,7 @@ import java.util.Calendar;
  */
 
 public class NotificationsSettings extends Fragment implements CompoundButton.OnCheckedChangeListener, View.OnFocusChangeListener {
-    private static final int NUMOFALARMS = 5;
+    private static final int NUMOFALARMS = 6;
     private Application activity;
     private TableLayout tableLayout;
     private View v;
@@ -92,17 +92,16 @@ public class NotificationsSettings extends Fragment implements CompoundButton.On
             hour.setFilters(new InputFilter[]{ new InputFilterMinMax("01", "24")});
             hour.setSelectAllOnFocus(true);
             hours.add(hour);
-            TableRow.LayoutParams params = new TableRow.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT);
-            params.setMargins(180, 0, 0, 0);
-            hour.setLayoutParams(params);
-
+            hour.setLayoutParams(new TableRow.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
             TextView t = new TextView(v.getContext());
             t.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
             t.setTextSize(30);
             t.setText(":");
 
             EditText minute = new EditText(v.getContext());
-            minute.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+            TableRow.LayoutParams params = new TableRow.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(0, 0, 210, 0);
+            minute.setLayoutParams(params);
             minute.setTextSize(30);
             minute.setText("00");
             minute.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -114,7 +113,8 @@ public class NotificationsSettings extends Fragment implements CompoundButton.On
             minutes.add(minute);
 
             Switch s = new Switch(v.getContext());
-            s.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+            TableRow.LayoutParams params1 = new TableRow.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT);
+            params1.setMargins(0, 0, 210, 0);
             s.setLayoutParams(params);
             s.setId(i);
             s.setChecked(false);

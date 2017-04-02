@@ -32,7 +32,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="19dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="10dp"
         android:text="שלום "
         android:textColor="@color/colorPrimaryDark"
         android:textCursorDrawable="@color/common_google_signin_btn_text_dark_focused"
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtChoose"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="15dp"
         android:text="הכנס את תוצאות הבדיקה האחרונה"
         android:textColor="@color/colorPrimaryDark"
         android:textCursorDrawable="@color/common_google_signin_btn_text_dark_focused"
@@ -60,7 +60,7 @@
         android:layout_height="200dip"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="18dp" />
+        android:layout_marginBottom="65dp" />
 
     <Button
         android:id="@+id/btnAdd"
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/graph"
         android:layout_alignEnd="@+id/txtChoose"
-        android:layout_marginBottom="19dp"
+        android:layout_marginBottom="35dp"
         android:background="@android:color/transparent"
         android:text="הוסף בדיקה"
         android:textColor="@color/colorPrimaryDark"
@@ -98,7 +98,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtEnter"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:gravity="fill_horizontal"
         android:hapticFeedbackEnabled="true"

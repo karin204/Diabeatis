@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,11 +43,14 @@ public class HistoryDisplay extends Fragment implements View.OnClickListener
         txtName.setText(p.getName());
         checkDbHandler = CheckDbHandler.getInstance(v.getContext());
         newCheck = (EditText) v.findViewById(R.id.check);
+        newCheck.setInputType(InputType.TYPE_CLASS_NUMBER);
         addTest = (Button)v.findViewById(R.id.btnAdd);
         addTest.setOnClickListener(this);
         showGraph = (Button) v.findViewById(R.id.btnShow);
         showGraph.setOnClickListener(this);
         graph = (GraphView) v.findViewById(R.id.graph);
+        graph.getGridLabelRenderer().setTextSize(30f);
+        graph.getGridLabelRenderer().reloadStyles();
 
         return v;
 
@@ -73,7 +77,6 @@ public class HistoryDisplay extends Fragment implements View.OnClickListener
                 break;
             }
         }
-
     }
 
 

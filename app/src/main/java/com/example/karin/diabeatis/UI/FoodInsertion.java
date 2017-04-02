@@ -2,12 +2,11 @@ package com.example.karin.diabeatis.UI;
 
 import android.app.Application;
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.text.InputFilter;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,9 +70,11 @@ public class FoodInsertion extends Fragment implements View.OnClickListener {
             final EditText edit1 = new EditText(v.getContext());
             edit1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
             edit1.setFilters(new InputFilter[] {new InputFilter.LengthFilter(5)});
+            edit1.setInputType(InputType.TYPE_CLASS_NUMBER);
             final EditText edit2 = new EditText(v.getContext());
             edit2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
             edit2.setFilters(new InputFilter[] {new InputFilter.LengthFilter(5)});
+            edit2.setInputType(InputType.TYPE_CLASS_NUMBER);
             final AutoCompleteTextView edit3 = new AutoCompleteTextView(v.getContext());
             edit3.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
             edit3.setDropDownWidth(getResources().getDisplayMetrics().widthPixels);
@@ -158,9 +159,9 @@ public class FoodInsertion extends Fragment implements View.OnClickListener {
         {
             TableRow row = (TableRow) tableLayout.getChildAt(i);
 
-            EditText qText = (EditText) row.getChildAt(0);
+            EditText qText = (EditText) row.getChildAt(2);
             EditText calText = (EditText) row.getChildAt(1);
-            EditText nameText = (EditText) row.getChildAt(2);
+            EditText nameText = (EditText) row.getChildAt(0);
             String foodName = nameText.getText().toString();
             String cal = calText.getText().toString();
             String qun = qText.getText().toString();
@@ -252,18 +253,6 @@ public class FoodInsertion extends Fragment implements View.OnClickListener {
                 .setPositiveButton("אישור", new DialogInterface.OnClickListener() {
                     public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                         dialog.cancel();
-                    }
-                })
-                .setNegativeButton("הכנסת נתונים", new DialogInterface.OnClickListener() {
-                    public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
-                        FragmentManager fragmentManager = getFragmentManager();
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        HistoryDisplay f = new HistoryDisplay();
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("person", p);
-                        f.setArguments(bundle);
-                        fragmentTransaction.replace(R.id.main_content,f);
-                        fragmentTransaction.commit();
                     }
                 });
         final AlertDialog alert = builder.create();
