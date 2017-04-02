@@ -1,6 +1,7 @@
 package com.example.karin.diabeatis.UI;
 
 import android.app.Application;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ public class InsulinCalculate extends Fragment implements View.OnClickListener{
     private TextView finalResult,name;
     private double result = 0;
     private Button btnCalc,btnDelete;
+    private TextView answer;
     private Person p;
     private Application activity;
     private  View v;
@@ -40,6 +42,7 @@ public class InsulinCalculate extends Fragment implements View.OnClickListener{
         btnCalc.setOnClickListener(this);
         btnDelete = (Button)v.findViewById(R.id.btnDel);
         btnDelete.setOnClickListener(this);
+        answer = (TextView)v.findViewById(R.id.txtAnswer);
 
         return v;
     }
@@ -75,10 +78,14 @@ public class InsulinCalculate extends Fragment implements View.OnClickListener{
         result = (unit1+unit2+unit3+unit4+unit5)*0.4;
         finalResult = (TextView)v.findViewById(R.id.txtFinal);
         finalResult.setText(String.valueOf(result));
+        if(p.getDailyUnit()<result)
+        { answer.setText("מינון יומי בטווח הנורמה");
+            answer.setTextColor(Color.GREEN);}
+        else {
+            answer.setText("שים לב! מינון יומי מתחת לטווח הנורמה");
+            answer.setTextColor(Color.RED);
+    }
         p.setTotalCheck(p.getTotalCheck()+1);
-        //SharedPreferences.Editor scoresEditor = getSharedPreferences("injections", MODE_PRIVATE).edit();
-        //scoresEditor.putString(p.getName(), String.valueOf(result));
-
 
     }
 
@@ -99,6 +106,7 @@ public class InsulinCalculate extends Fragment implements View.OnClickListener{
                 res4.setText("");
                 res5.setText("");
                 finalResult.setText("");
+                answer.setText("");
                 break;
             }
         }

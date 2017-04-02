@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/page"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true">
 
@@ -9,50 +10,53 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="נא הכנס זמני תזכורות לגבי בדיקות סוכר:"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_marginTop="26dp"
+        android:text="נא הכנס זמני תזכורות לגבי בדיקות סוכר:"
+        android:textColor="@android:color/background_dark" />
 
     <TableLayout
+        android:id="@+id/tableLayout7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView5"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="35dp"
-        android:id="@+id/tableLayout7">
+        android:layout_below="@+id/textView5"
+        android:layout_marginTop="35dp">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:layout_marginLeft="90dp"
-                android:text="שעה"></TextView>
-
-            <TextView
+                android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="70dp"
-                android:textSize="20dp"
-                android:text="פעיל/לא פעיל"></TextView>
+                android:text="פעיל/לא פעיל"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20dp"></TextView>
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="90dp"
+                android:text="שעה"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20dp"></TextView>
 
         </TableRow>
     </TableLayout>
 
     <TableLayout
+        android:id="@+id/tableLayout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tableLayout5"
-        android:layout_below="@+id/tableLayout7"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tableLayout7">
 
     </TableLayout>
 

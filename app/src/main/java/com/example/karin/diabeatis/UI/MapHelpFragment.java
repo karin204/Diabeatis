@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.LocationManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
@@ -61,6 +62,8 @@ public class MapHelpFragment extends Fragment implements OnMapReadyCallback {
         latitude = getArguments().getDouble("Latitude");
         longitude = getArguments().getDouble("Longitude");
         locationManager = (LocationManager) this.getActivity().getApplication().getSystemService(Context.LOCATION_SERVICE);
+        MediaPlayer mp = MediaPlayer.create(this.getActivity(), R.raw.help);
+        mp.start();
         if ( !locationManager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
             buildAlertMessageNoGps();
         }
@@ -81,6 +84,7 @@ public class MapHelpFragment extends Fragment implements OnMapReadyCallback {
         geocoder = new Geocoder(activity, Locale.getDefault());
 
 
+
         if(latitude != 0 && longitude != 0) {
             try {
                 addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
@@ -93,8 +97,8 @@ public class MapHelpFragment extends Fragment implements OnMapReadyCallback {
                 final String country = addresses.get(0).getCountryName();
 
                 mMap.addMarker(new MarkerOptions().snippet(address + ", " + city).position(new LatLng(latitude, longitude)));
-                txtAddress.setText("Current Address: " + address +" "+city);
-                message = "check "+ address+" "+city;
+                txtAddress.setText("מקום נוכחי: " + address +" "+city);
+                message = "קריאת עזרה מאפליקציית diabeatis במיקום: "+ address+" "+city;
                 sendSMSMessage();
 
 
@@ -116,7 +120,7 @@ public class MapHelpFragment extends Fragment implements OnMapReadyCallback {
     protected void sendSMSMessage() {
         try {
             SmsManager.getDefault().sendTextMessage(number, null, message, null, null);
-            Toast.makeText(getActivity(), "SMS sent.",
+            Toast.makeText(getActivity(), "הודעה נשלחה ליעד",
                     Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             AlertDialog.Builder alertDialogBuilder = new
@@ -138,11 +142,11 @@ public class MapHelpFragment extends Fragment implements OnMapReadyCallback {
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     SmsManager smsManager = SmsManager.getDefault();
                     smsManager.sendTextMessage(number, null, message, null, null);
-                    Toast.makeText(getActivity(), "SMS sent.",
+                    Toast.makeText(getActivity(), "הודעה נשלחה ליעד",
                             Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(activity,
-                            "SMS faild, please try again.", Toast.LENGTH_LONG).show();
+                            "שליחת הודעה נכשלה", Toast.LENGTH_LONG).show();
                     return;
                 }
             }

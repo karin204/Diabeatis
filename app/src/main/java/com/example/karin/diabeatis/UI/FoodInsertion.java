@@ -261,7 +261,7 @@ public class FoodInsertion extends Fragment implements View.OnClickListener {
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("person", p);
                         f.setArguments(bundle);
-                        fragmentTransaction.replace(R.id.fregmentPlace,f);
+                        fragmentTransaction.replace(R.id.main_content,f);
                         fragmentTransaction.commit();
                     }
                 });

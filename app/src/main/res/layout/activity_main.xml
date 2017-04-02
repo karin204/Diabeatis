@@ -1,35 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/register">
+
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:text="ברוך הבא!"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        android:textStyle="bold"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textColorLink="@color/colorPrimaryDark"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="נא למלא את פרטיך האישיים:"
         android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:text="אנא מלא את פרטייך האישיים"
+        android:textColor="@color/colorPrimaryDark"
+        android:textColorLink="@color/colorPrimaryDark" />
 
     <TableLayout
+        android:id="@+id/tableLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true"
-        android:id="@+id/tableLayout">
+        android:layout_marginTop="16dp">
 
         <TableRow
             android:layout_width="wrap_content"
@@ -37,26 +43,31 @@
 
             android:layout_centerHorizontal="true">
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/fName"
-                android:textColor="@android:color/black"
-                android:textAlignment="center"
-                android:hint="שם פרטי"
-                android:textSize="20sp"
-                android:maxLines="1"
-                android:inputType="text"
-                android:maxLength="15" />
-
             <TextView
+                android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView"
-                android:textSize="20sp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginRight="12dp"
-                android:text="שם פרטי:" />
+                android:text="שם פרטי:"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorLink="@color/colorPrimaryDark"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/fName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="שם פרטי"
+                android:inputType="text"
+                android:maxLength="15"
+                android:maxLines="1"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorLink="@color/colorPrimaryDark"
+                android:textCursorDrawable="@color/colorPrimaryDark"
+                android:textSize="20sp" />
 
         </TableRow>
 
@@ -65,27 +76,32 @@
             android:layout_height="match_parent"
             android:layout_marginTop="5dp"
             android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginRight="12dp"
+                android:text="שם משפחה:"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorLink="@color/colorPrimaryDark"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/lName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="שם משפחה"
-                android:maxLength="15"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"
-                android:maxLines="1"
                 android:inputType="text"
+                android:maxLength="15"
+                android:maxLines="1"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorLink="@color/colorPrimaryDark"
+                android:textCursorDrawable="@color/colorPrimaryDark"
                 android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView"
-                android:layout_centerHorizontal="true"
-                android:layout_marginRight="12dp"
-                android:textSize="20sp"
-                android:text="שם משפחה:" />
 
         </TableRow>
 
@@ -94,27 +110,32 @@
             android:layout_height="match_parent"
             android:layout_marginTop="5dp"
             android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginRight="12dp"
+                android:text="גיל:"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorLink="@color/colorPrimaryDark"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/age"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="גיל"
-                android:maxLength="15"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"
-                android:maxLines="1"
                 android:inputType="numberSigned"
+                android:maxLength="15"
+                android:maxLines="1"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorLink="@color/colorPrimaryDark"
+                android:textCursorDrawable="@color/colorPrimaryDark"
                 android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView"
-                android:layout_centerHorizontal="true"
-                android:layout_marginRight="12dp"
-                android:textSize="20sp"
-                android:text="גיל:" />
 
         </TableRow>
 
@@ -123,27 +144,32 @@
             android:layout_height="match_parent"
             android:layout_marginTop="5dp"
             android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginRight="12dp"
+                android:text="משקל(קג):"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorLink="@color/colorPrimaryDark"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/weight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="משקל"
-                android:maxLength="15"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"
-                android:maxLines="1"
                 android:inputType="numberDecimal"
+                android:maxLength="15"
+                android:maxLines="1"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorLink="@color/colorPrimaryDark"
+                android:textCursorDrawable="@color/colorPrimaryDark"
                 android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView"
-                android:layout_centerHorizontal="true"
-                android:layout_marginRight="12dp"
-                android:textSize="20sp"
-                android:text="משקל(קג):" />
 
         </TableRow>
 
@@ -153,26 +179,31 @@
             android:layout_marginTop="5dp"
             android:gravity="center_horizontal">
 
-            <EditText
-                android:id="@+id/height"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:hint="גובה"
-                android:maxLength="15"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"
-                android:maxLines="1"
-                android:textSize="20sp" />
-
             <TextView
+                android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView"
                 android:layout_centerHorizontal="true"
                 android:layout_marginRight="12dp"
-                android:textSize="20sp"
-                android:text="גובה (סמ):" />
+                android:text="גובה (סמ):"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorLink="@color/colorPrimaryDark"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="גובה"
+                android:inputType="numberDecimal"
+                android:maxLength="15"
+                android:maxLines="1"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorLink="@color/colorPrimaryDark"
+                android:textCursorDrawable="@color/colorPrimaryDark"
+                android:textSize="20sp" />
 
         </TableRow>
 
@@ -187,28 +218,40 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <RadioButton
-                    android:id="@+id/radioOne"
+
+                <TextView
+                    android:id="@+id/textView11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1" />
+                    android:layout_below="@+id/textView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginRight="12dp"
+                    android:layout_weight="1"
+                    android:text="סוג סכרת:"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textColorLink="@color/colorPrimaryDark"
+                    android:textSize="20sp" />
 
                 <RadioButton
                     android:id="@+id/radioTwo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="2" />
-            </RadioGroup>
+                    android:shadowColor="@color/colorPrimaryDark"
+                    android:text="2"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textColorLink="@color/colorPrimaryDark"
+                    android:textCursorDrawable="@color/colorPrimaryDark" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView"
-                android:layout_centerHorizontal="true"
-                android:layout_marginRight="12dp"
-                android:textSize="20sp"
-                android:text="סוג סכרת:" />
+                <RadioButton
+                    android:id="@+id/radioOne"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textColorLink="@color/colorPrimaryDark" />
+
+            </RadioGroup>
 
         </TableRow>
 
@@ -218,18 +261,6 @@
             android:layout_marginTop="5dp"
             android:gravity="center_horizontal">
 
-            <EditText
-                android:id="@+id/phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="מספר חירום"
-                android:maxLength="15"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"
-                android:maxLines="1"
-                android:inputType="numberSigned"
-                android:textSize="20sp" />
-
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
@@ -238,6 +269,21 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginRight="12dp"
                 android:text="מספר חירום"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="מספר חירום"
+                android:inputType="numberSigned"
+                android:maxLength="15"
+                android:maxLines="1"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorLink="@color/colorPrimaryDark"
+                android:textCursorDrawable="@color/colorPrimaryDark"
                 android:textSize="20sp" />
 
         </TableRow>
@@ -246,11 +292,14 @@
 
     <Button
         android:id="@+id/sendBtn"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="שליחה"
-        android:layout_marginTop="13dp"
         android:layout_below="@+id/tableLayout"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp"
+        android:background="@android:color/transparent"
+        android:text="שליחה"
+        android:textColor="@color/colorPrimaryDark" />
 
 </RelativeLayout>

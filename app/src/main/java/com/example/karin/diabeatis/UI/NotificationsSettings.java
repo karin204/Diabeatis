@@ -121,10 +121,12 @@ public class NotificationsSettings extends Fragment implements CompoundButton.On
             s.setOnCheckedChangeListener(this);
             switches.add(s);
 
-            row.addView(hour);
-            row.addView(t);
-            row.addView(minute);
             row.addView(s);
+            row.addView(minute);
+            row.addView(t);
+            row.addView(hour);
+
+
 
             tableLayout.addView(row, new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
         }

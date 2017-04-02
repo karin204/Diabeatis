@@ -29,6 +29,7 @@ public class HistoryDisplay extends Fragment implements View.OnClickListener
     private TextView txtName;
     private EditText newCheck;
     private Button showGraph;
+    private Button addTest;
     private CheckDbHandler checkDbHandler;
     private GraphView graph;
 
@@ -41,6 +42,8 @@ public class HistoryDisplay extends Fragment implements View.OnClickListener
         txtName.setText(p.getName());
         checkDbHandler = CheckDbHandler.getInstance(v.getContext());
         newCheck = (EditText) v.findViewById(R.id.check);
+        addTest = (Button)v.findViewById(R.id.btnAdd);
+        addTest.setOnClickListener(this);
         showGraph = (Button) v.findViewById(R.id.btnShow);
         showGraph.setOnClickListener(this);
         graph = (GraphView) v.findViewById(R.id.graph);
@@ -51,23 +54,33 @@ public class HistoryDisplay extends Fragment implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
+
+        int id = v.getId();
         ArrayList<Check> checks  = new ArrayList<>();
-        if(!tryParseDouble(newCheck.getText().toString()) )
-            buildAlertMessage("בדיקה חייבת להיות בעלת ערך מספרי");
-        else {
-            if (String.valueOf(newCheck.getText()).equals(" ")) {
-                showChecksHistory();
-            } else {
+
+        switch(id)
+        {
+            case R.id.btnAdd:
+            {
+                if(!tryParseDouble(newCheck.getText().toString()) )
+                    buildAlertMessage("בדיקה חייבת להיות בעלת ערך מספרי");
                 insertCheck();
+                break;
+            }
+            case R.id.btnShow:
+            {
                 showChecksHistory();
+                break;
             }
         }
+
     }
 
 
     public void insertCheck()
     {
         String ch = newCheck.getText().toString();
+        newCheck.setText("");
         Check curCheck = new Check(p.getName(),Double.parseDouble(ch));
         checkDbHandler.insertCheck(curCheck);
     }

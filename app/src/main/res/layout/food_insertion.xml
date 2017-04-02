@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/page"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true">
 
@@ -9,21 +10,21 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="31dp"
-        android:text="נא הכנס את פרטי הארוחה:"
-        android:textSize="18dp"
-        android:textStyle="bold"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_marginTop="33dp"
+        android:text="נא הכנס את פרטי הארוחה:"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18dp"
+        android:textStyle="bold" />
 
     <TableLayout
+        android:id="@+id/tableLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_below="@+id/textView3"
         android:layout_centerHorizontal="true"
-        android:id="@+id/tableLayout">
+        android:layout_marginTop="30dp">
 
         <TableRow
             android:layout_width="wrap_content"
@@ -31,30 +32,35 @@
             android:layout_centerHorizontal="true">
 
             <TextView
-                android:text="כמות"
+                android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:inputType="numberDecimal"
-                android:layout_marginLeft="30dp"/>
-
-            <TextView
-                android:text="קלוריות"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:inputType="numberDecimal"
-                android:layout_marginLeft="30dp"/>
-
-            <TextView
+                android:layout_marginLeft="140dp"
                 android:text="שם"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginLeft="140dp"/>
+                android:layout_marginLeft="30dp"
+                android:inputType="numberDecimal"
+                android:text="קלוריות"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="30dp"
+                android:inputType="numberDecimal"
+                android:text="כמות"
+                android:textColor="@color/colorPrimaryDark" />
 
         </TableRow>
 
@@ -68,5 +74,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="92dp"
-        android:text="חשב" />
+        android:background="@android:color/transparent"
+        android:text="חשב"
+        android:textColor="@color/colorPrimaryDark" />
 </RelativeLayout>

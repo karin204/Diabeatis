@@ -1,6 +1,7 @@
 package com.example.karin.diabeatis.UI;
 
 import android.Manifest;
+import android.app.ActionBar;
 import android.app.AlarmManager;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -9,6 +10,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -20,6 +23,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,10 +43,6 @@ import java.util.List;
 public class MainPage extends AppCompatActivity implements View.OnClickListener, LocationListener {
 
     private Button btnHelp;
-    private Button btnInj;
-    private Button btnFood;
-    private Button btnReminders;
-    private Button btnHistory;
     private LocationManager locationManager;
     private Location location;
     private double longitude;
@@ -51,7 +51,6 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
     private Person p;
     private final String TAG = MainPage.class.getSimpleName();
     private AlarmManager alarmMgr;
-
     private List<ItemSlideMenu> listSliding;
     private SlidingMenuAdapter adapter;
     private ListView listViewSliding;
@@ -83,14 +82,6 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
         setContentView(R.layout.main_page2);
         btnHelp = (Button)findViewById(R.id.btnHelp);
         btnHelp.setOnClickListener(this);
-//        btnInj = (Button)findViewById(R.id.btn);
-//        btnInj.setOnClickListener(this);
-//        btnFood = (Button) findViewById(R.id.btnfood);
-//        btnFood.setOnClickListener(this);
-//        btnReminders = (Button) findViewById(R.id.btnReminders);
-//        btnReminders.setOnClickListener(this);
-//        btnHistory = (Button)findViewById(R.id.btnHistory);
-//        btnHistory.setOnClickListener(this);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         p = (Person) getIntent().getSerializableExtra("person");
         if(p == null)
@@ -99,20 +90,19 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
         listViewSliding = (ListView)findViewById(R.id.lv_sliding_menu);
         drawerLayout = (DrawerLayout)findViewById(R.id.main_page2);
         listSliding = new ArrayList<>();
-        listSliding.add(new ItemSlideMenu(R.drawable.appicon,"הסטוריה"));
-        listSliding.add(new ItemSlideMenu(R.drawable.appicon,"תזכורות"));
-        listSliding.add(new ItemSlideMenu(R.drawable.appicon,"ארוחות"));
-        listSliding.add(new ItemSlideMenu(R.drawable.appicon,"הזרקות"));
-        listSliding.add(new ItemSlideMenu(R.drawable.appicon,"היסטוריה אוכל"));
-        listSliding.add(new ItemSlideMenu(R.drawable.appicon,"עריכת פרטים"));
+        listSliding.add(new ItemSlideMenu(R.drawable.hist,"הסטוריה"));
+        listSliding.add(new ItemSlideMenu(R.drawable.alarmicon,"תזכורות"));
+        listSliding.add(new ItemSlideMenu(R.drawable.food,"ארוחות"));
+        listSliding.add(new ItemSlideMenu(R.drawable.appicon,"מתן אינסולין"));
+        listSliding.add(new ItemSlideMenu(R.drawable.food,"היסטוריה אוכל"));
+        listSliding.add(new ItemSlideMenu(R.drawable.detailsicon,"עריכת פרטים"));
         adapter = new SlidingMenuAdapter(this,listSliding);
         listViewSliding.setAdapter(adapter);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("תפריט");
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.CYAN));
         listViewSliding.setItemChecked(0,true);
-       drawerLayout.closeDrawer(listViewSliding);
-
-      //  replaceFragments(1);
+        drawerLayout.closeDrawer(listViewSliding);
 
         listViewSliding.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -124,6 +114,8 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
             }
         });
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.drawer_opened, R.string.drawer_closed){
+
+
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
@@ -151,11 +143,15 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(actionBarDrawerToggle.onOptionsItemSelected(item))
-        {
-            return true;
+        if (item != null && item.getItemId() == android.R.id.home) {
+            if (drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
+                drawerLayout.closeDrawer(Gravity.RIGHT);
+            }
+            else {
+                drawerLayout.openDrawer(Gravity.RIGHT);
+            }
         }
-        return super.onOptionsItemSelected(item);
+        return false;
     }
 
 
@@ -171,7 +167,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
     {
        switch(pos)
         {
-            case 0:
+            case 3:
             {
                 buildOptionsMessage();
                 break;
@@ -184,7 +180,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("person", p);
                 f.setArguments(bundle);
-                fragmentTransaction.replace(R.id.fregmentPlace,f);
+                fragmentTransaction.replace(R.id.main_content,f);
                 fragmentTransaction.commit();
                 break;
             }
@@ -196,11 +192,11 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("person", p);
                 f.setArguments(bundle);
-                fragmentTransaction.replace(R.id.fregmentPlace,f);
+                fragmentTransaction.replace(R.id.main_content,f);
                 fragmentTransaction.commit();
                 break;
             }
-            case 3:
+            case 0:
             {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -208,7 +204,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("person", p);
                 f.setArguments(bundle);
-                fragmentTransaction.replace(R.id.fregmentPlace,f);
+                fragmentTransaction.replace(R.id.main_content,f);
                 fragmentTransaction.commit();
                 break;
             }
@@ -221,7 +217,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("person", p);
                 f.setArguments(bundle);
-                fragmentTransaction.replace(R.id.fregmentPlace,f);
+                fragmentTransaction.replace(R.id.main_content,f);
                 fragmentTransaction.commit();
                 break;
             }
@@ -285,7 +281,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                 bundle.putDouble("Longitude",longitude);
                 bundle.putString("Number",p.getPhone());
                 f.setArguments(bundle);
-                fragmentTransaction.replace(R.id.fregmentPlace,f);
+                fragmentTransaction.replace(R.id.main_content,f);
                 fragmentTransaction.commit();
                 break;
            }
@@ -403,7 +399,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("person", p);
                         f.setArguments(bundle);
-                        fragmentTransaction.replace(R.id.fregmentPlace,f);
+                        fragmentTransaction.replace(R.id.main_content,f);
                         fragmentTransaction.commit();
 
                     }
@@ -416,7 +412,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("person", p);
                         f.setArguments(bundle);
-                        fragmentTransaction.replace(R.id.fregmentPlace,f);
+                        fragmentTransaction.replace(R.id.main_content,f);
                         fragmentTransaction.commit();
                     }
                 });

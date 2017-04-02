@@ -2,6 +2,7 @@ package com.example.karin.diabeatis.UI;
 
 import android.app.Application;
 import android.app.Fragment;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -32,6 +33,7 @@ public class ExtractingCalculate extends Fragment implements View.OnClickListene
     private EditText res1,res2,res3,res4,res5;
     private TextView txtName;
     private TextView result;
+    private TextView ans;
     private Button calc,del;
 
 
@@ -57,6 +59,7 @@ public class ExtractingCalculate extends Fragment implements View.OnClickListene
         result = (TextView)v.findViewById(R.id.txtFinalE);
         txtName = (TextView)v.findViewById(R.id.txtNameE);
         txtName.setText(p.getName());
+        ans = (TextView)v.findViewById(R.id.txtAns);
         calc = (Button)v.findViewById(R.id.btnCalc);
         del = (Button)v.findViewById(R.id.btnDelete);
         calc.setOnClickListener(this);
@@ -121,6 +124,14 @@ public class ExtractingCalculate extends Fragment implements View.OnClickListene
             }
         }
         finalRes+=0.05;
+        if(p.getDailyUnit()<finalRes)
+        { ans.setText("מינון יומי בטווח הנורמה");
+            ans.setTextColor(Color.GREEN);}
+        else {
+            ans.setText("שים לב! מינון יומי מתחת לטווח הנורמה");
+            ans.setTextColor(Color.RED);
+        }
+
         result.setText(String.valueOf(finalRes));
     }
 }

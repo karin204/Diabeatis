@@ -13,20 +13,22 @@
         android:allowBackup="true"
         android:icon="@drawable/appicon"
         android:label="@string/app_name"
-        android:supportsRtl="false"
+        android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCmXlXYq-g92A5k0A0R65_YqTR2LWPCKY4" />
 
-        <activity android:name=".UI.StartPage">
+        <activity android:name=".UI.StartPage"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UI.MainPage" />
+        <activity android:name=".UI.MainPage"
+            android:screenOrientation="portrait"/>
 
         <receiver android:name=".BroadcastReceiver.MyBootReceiver" android:enabled="true" android:exported="false" android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
             <intent-filter>
