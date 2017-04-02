@@ -3,6 +3,7 @@ package com.example.karin.diabeatis.UI;
 import android.app.Application;
 import android.app.Fragment;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
@@ -33,10 +34,11 @@ public class HistoryDisplay extends Fragment implements View.OnClickListener
     private Button addTest;
     private CheckDbHandler checkDbHandler;
     private GraphView graph;
+    private View v;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.activity_history_display, container, false);
+        v = inflater.inflate(R.layout.activity_history_display, container, false);
         activity = this.getActivity().getApplication();
         txtName = (TextView) v.findViewById(R.id.txtChoose);
         p = (Person) getArguments().getSerializable("person");
@@ -84,6 +86,9 @@ public class HistoryDisplay extends Fragment implements View.OnClickListener
     public void insertCheck()
     {
         String ch = newCheck.getText().toString();
+        SharedPreferences.Editor userEditor  = activity.getSharedPreferences("user", activity.MODE_PRIVATE).edit();
+        userEditor.putString("lastCheck", ch);
+        userEditor.apply();
         newCheck.setText("");
         Check curCheck = new Check(p.getName(),Double.parseDouble(ch));
         checkDbHandler.insertCheck(curCheck);

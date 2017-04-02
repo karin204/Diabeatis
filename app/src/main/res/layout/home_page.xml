@@ -65,7 +65,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:inputType="numberDecimal"
-                android:text="יחידות אינסולין מורידה:"
+                android:text="יחידת אינסולין מורידה:"
                 android:textSize="20dp"
                 android:textColor="@color/colorPrimary" />
 
@@ -77,6 +77,35 @@
                 android:layout_centerHorizontal="true"
                 android:inputType="numberDecimal"
                 android:text="כמות"
+                android:textSize="20dp"
+                android:textColor="@color/colorPrimary" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:inputType="numberDecimal"
+                android:text="ערך בדיקת הסוכר האחרונה:"
+                android:textSize="20dp"
+                android:textColor="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/lastCheckText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:inputType="numberDecimal"
+                android:layout_marginLeft="10dp"
+                android:text="בדיקה"
                 android:textSize="20dp"
                 android:textColor="@color/colorPrimary" />
         </TableRow>

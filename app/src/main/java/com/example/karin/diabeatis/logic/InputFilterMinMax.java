@@ -24,7 +24,7 @@ public class InputFilterMinMax implements InputFilter {
     @Override
     public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
         try {
-            if(dest.length()>=2)
+            if(dest.length()>2)
                 return "";
             // Remove the string out of destination that is to be replaced
             String newVal = dest.toString().substring(0, dstart) + dest.toString().substring(dend, dest.toString().length());

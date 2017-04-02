@@ -4,6 +4,15 @@
     <string name="title_activity_insulin_cal">insulinCal</string>
     <string name="drawer_opened">Opened</string>
     <string name="drawer_closed">Closed</string>
+    <string name="about"> היישום הינו כלי עזר לניהול חייהם של חולי הסכרת.
+    \nהיישום מציג מספר אפשרויות:
+    \nהיסטוריה - מאפשר להזין בדיקות סוכר ולצפות בהיסטוריית הבדיקות שלך.
+    \nתזכורות - מאפשר לך ליצור עד 6 תזכורות לגבי בדיקות סוכר/זמני הזרקת איסולין לבחירתך.
+    \nארוחות - מאפשר להכניס את פרטי המזון אשר צרכת ולקבל חזרה את כמות האינסולין שעליך להזריק.
+    \nמתן אינסולין - כלי עזר לבדיקה האם אתה עומד בכמות האינסולין היומית שלך.
+    \nהיסטוריית אוכל - מאפשר לצפות ולראות לרופא מה אכלת מאז שימושך ביישום.
+
+    \n\n**האפליקצייה אינה כלי רפואי ואינה מחליפה עצת רופא**</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

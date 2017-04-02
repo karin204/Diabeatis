@@ -20,6 +20,8 @@ import com.example.karin.diabeatis.R;
 import com.example.karin.diabeatis.logic.InputFilterMinMax;
 import com.example.karin.diabeatis.logic.Person;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -77,7 +79,7 @@ public class ExtractingCalculate extends Fragment implements View.OnClickListene
                 }
                 case R.id.btnCalc:
                 {
-                    calculateDailyExtraction();
+                    calculateDailyExtraction2();
                     break;
                 }
             }
@@ -136,7 +138,7 @@ public class ExtractingCalculate extends Fragment implements View.OnClickListene
             hourTo.setOnFocusChangeListener(this);
             hourTo.setFilters(new InputFilter[]{ new InputFilterMinMax("01", "24")});
             hourTo.setSelectAllOnFocus(true);
-            hoursTo.add(hourFrom);
+            hoursTo.add(hourTo);
             TextView t2 = new TextView(v.getContext());
             t2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
             t2.setTextSize(20);
@@ -161,7 +163,7 @@ public class ExtractingCalculate extends Fragment implements View.OnClickListene
             unit.setInputType(InputType.TYPE_CLASS_NUMBER);
             unit.setFilters(new InputFilter[] {new InputFilter.LengthFilter(2)});
             unit.setId(i);
-            unit.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "59")});
+            unit.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "90")});
             unit.setSelectAllOnFocus(true);
             unit.setOnFocusChangeListener(this);
             units.add(unit);
@@ -222,8 +224,55 @@ public class ExtractingCalculate extends Fragment implements View.OnClickListene
         result.setText(String.valueOf(finalRes));
     }
 
+    public void calculateDailyExtraction2()
+    {
+        double finalRes = 0;
+        for (int i = 0; i < units.size(); i++)
+        {
+            int unit = Integer.parseInt(units.get(i).getText().toString());
+            if(unit > 0)
+            {
+                int fromHour = Integer.parseInt(hoursFrom.get(i).getText().toString());
+                int toHour = Integer.parseInt(hoursTo.get(i).getText().toString());
+                int fromMinute = Integer.parseInt(minutesFrom.get(i).getText().toString());
+                int toMinute = Integer.parseInt(minutesTo.get(i).getText().toString());
+
+                int hour = toHour - fromHour;
+                double minute = (toMinute - fromMinute)/60;
+
+                double tempRes = round((hour * unit) + (minute * unit), 1);
+                finalRes += tempRes;
+            }
+        }
+
+        if(finalRes > 0)
+        {
+            finalRes+=0.05;
+
+            if(p.getDailyUnit()<finalRes)
+            { ans.setText("מינון יומי בטווח הנורמה");
+                ans.setTextColor(Color.GREEN);}
+            else {
+                ans.setText("שים לב! מינון יומי מתחת לטווח הנורמה");
+                ans.setTextColor(Color.RED);
+            }
+
+            result.setText(String.valueOf(finalRes));
+        }
+    }
+
+
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
 
     }
+
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
+
 }

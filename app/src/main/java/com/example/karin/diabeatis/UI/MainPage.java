@@ -89,13 +89,14 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
         listViewSliding = (ListView)findViewById(R.id.lv_sliding_menu);
         drawerLayout = (DrawerLayout)findViewById(R.id.main_page2);
         listSliding = new ArrayList<>();
-        listSliding.add(new ItemSlideMenu(R.drawable.hist,"עמוד הבית"));
+        listSliding.add(new ItemSlideMenu(R.drawable.home,"עמוד הבית"));
         listSliding.add(new ItemSlideMenu(R.drawable.hist,"הסטוריה"));
         listSliding.add(new ItemSlideMenu(R.drawable.alarmicon,"תזכורות"));
         listSliding.add(new ItemSlideMenu(R.drawable.food,"ארוחות"));
         listSliding.add(new ItemSlideMenu(R.drawable.appicon,"מתן אינסולין"));
         listSliding.add(new ItemSlideMenu(R.drawable.food,"היסטוריה אוכל"));
         listSliding.add(new ItemSlideMenu(R.drawable.detailsicon,"עריכת פרטים"));
+        listSliding.add(new ItemSlideMenu(R.drawable.about,"אודות"));
         adapter = new SlidingMenuAdapter(this,listSliding);
         listViewSliding.setAdapter(adapter);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -131,7 +132,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
 
         if(getIntent().getStringExtra("from").equals("noti"))
-            replaceFragments(3);
+            replaceFragments(1);
         else
             replaceFragments(0);
     }
@@ -244,6 +245,19 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                 intent.putExtra("person",p);
                 startActivity(intent);
                 finish();
+                break;
+            }
+
+            case 7:
+            {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                AboutPage f = new AboutPage();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("person", p);
+                f.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fregmentPlace,f);
+                fragmentTransaction.commit();
                 break;
             }
         }
